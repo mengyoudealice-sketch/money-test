@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金钱人格测试</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+SC:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#f5efe4;--bg-secondary:#ede4d3;--bg-tertiary:#e8dcc6;--text-primary:#2c2416;--text-secondary:#6b5d47;--text-tertiary:#9a8b6f;--accent:#8b6f47;--accent-dark:#5c4a30;--accent-light:#c4a882;--divider:#d4c5a8;--shadow:rgba(92,74,48,0.08);--shadow-hover:rgba(92,74,48,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Serif SC','Cormorant Garamond',serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.8;min-height:100vh;overflow-x:hidden;font-weight:300}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(196,168,130,0.08) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(139,111,71,0.06) 0%,transparent 50%);pointer-events:none;z-index:0}
+.page{display:none}.page.active{display:block;animation:fadeIn 0.8s ease}.cover.active{display:flex}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 40px;position:relative;z-index:1}
+.cover-ornament{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:8px;color:var(--text-tertiary);text-transform:uppercase;margin-bottom:30px;font-style:italic}
+.cover-title{font-family:'Fraunces','Noto Serif SC',serif;font-size:clamp(40px,7vw,72px);font-weight:300;line-height:1.2;margin-bottom:24px;letter-spacing:-1px}
+.cover-title .highlight{font-style:italic;font-weight:400;color:var(--accent);display:block;margin-top:8px}
+.cover-divider{width:60px;height:1px;background:var(--accent);margin:30px 0}
+.cover-poem{max-width:520px;font-size:16px;color:var(--text-secondary);line-height:2.2;margin-bottom:50px;font-style:italic}
+.cover-meta{display:flex;gap:60px;margin-bottom:50px;color:var(--text-tertiary);font-size:13px;letter-spacing:2px}
+.cover-meta-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.cover-meta-item span:first-child{font-family:'Fraunces',serif;font-size:28px;font-weight:400;color:var(--accent);font-style:italic}
+.btn-start{background:var(--accent-dark);color:var(--bg-primary);border:none;padding:18px 56px;font-size:14px;letter-spacing:4px;font-family:'Noto Serif SC',serif;cursor:pointer;transition:all 0.4s ease}
+.btn-start:hover{background:var(--accent);box-shadow:0 20px 40px var(--shadow-hover);transform:translateY(-2px)}
+
+.test-page{min-height:100vh;padding:60px 40px 100px;position:relative;z-index:1}
+.progress-wrapper{max-width:720px;margin:0 auto 60px}
+.progress-info{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;font-family:'Cormorant Garamond',serif}
+.progress-label{font-size:12px;letter-spacing:4px;color:var(--text-tertiary);text-transform:uppercase}
+.progress-count{font-size:18px;color:var(--accent);font-style:italic}
+.progress-count .current{font-size:28px;font-weight:400}
+.progress-bar{width:100%;height:1px;background:var(--divider);position:relative;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);width:0%;transition:width 0.6s cubic-bezier(0.23,1,0.32,1)}
+.question-container{max-width:680px;margin:0 auto}
+.question-category{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:6px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;font-style:italic}
+.question-text{font-family:'Fraunces','Noto Serif SC',serif;font-size:clamp(20px,3vw,28px);line-height:1.6;margin-bottom:40px;font-weight:400;color:var(--text-primary);letter-spacing:-0.3px}
+.options{display:flex;flex-direction:column;gap:14px}
+.option{background:var(--bg-secondary);border:1px solid transparent;padding:20px 26px;cursor:pointer;transition:all 0.3s ease;display:flex;align-items:flex-start;gap:18px;font-family:'Noto Serif SC',serif;font-size:15px;line-height:1.7;color:var(--text-primary);position:relative;text-align:left;border-radius:2px}
+.option::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transition:transform 0.3s ease;transform-origin:top}
+.option:hover{background:var(--bg-tertiary);transform:translateX(4px)}.option:hover::before{transform:scaleY(1)}
+.option.selected{background:var(--bg-tertiary);border-color:var(--accent)}.option.selected::before{transform:scaleY(1)}
+.option-letter{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--accent);font-weight:500;min-width:20px}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:50px;padding-top:24px;border-top:1px solid var(--divider)}
+.btn-nav{background:transparent;border:none;padding:10px 20px;font-family:'Noto Serif SC',serif;font-size:13px;letter-spacing:3px;color:var(--text-secondary);cursor:pointer;transition:all 0.3s ease}
+.btn-nav:hover:not(:disabled){color:var(--accent)}.btn-nav:disabled{opacity:0.3;cursor:not-allowed}
+.btn-next{background:var(--accent-dark);color:var(--bg-primary);padding:14px 36px;letter-spacing:4px}
+.btn-next:hover:not(:disabled){background:var(--accent);color:var(--bg-primary);transform:translateY(-2px);box-shadow:0 10px 25px var(--shadow)}
+.btn-next:disabled{background:var(--divider);color:var(--text-tertiary);cursor:not-allowed}
+
+.result-page{min-height:100vh;padding:60px 0 100px;position:relative;z-index:1}
+.version-toggle{position:sticky;top:20px;z-index:100;display:flex;justify-content:center;margin-bottom:30px;pointer-events:none}
+.version-toggle-inner{display:inline-flex;background:var(--bg-secondary);border:1px solid var(--divider);border-radius:100px;padding:4px;pointer-events:auto;box-shadow:0 4px 16px var(--shadow)}
+.toggle-btn{padding:10px 24px;font-family:'Noto Serif SC',serif;font-size:13px;letter-spacing:2px;color:var(--text-secondary);background:transparent;border:none;cursor:pointer;border-radius:100px;transition:all 0.3s ease}
+.toggle-btn.active{background:var(--accent-dark);color:var(--bg-primary)}
+.result-hero{text-align:center;padding:40px 40px 60px;max-width:760px;margin:0 auto;border-bottom:1px solid var(--divider);margin-bottom:60px}
+.result-label{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:8px;color:var(--text-tertiary);text-transform:uppercase;font-style:italic;margin-bottom:24px}
+.result-name{font-family:'Fraunces','Noto Serif SC',serif;font-size:clamp(48px,8vw,80px);font-weight:300;line-height:1.1;margin-bottom:16px;color:var(--accent-dark);letter-spacing:-2px}
+.result-name-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--accent);margin-bottom:30px;font-weight:400;letter-spacing:2px}
+.result-tagline{font-family:'Fraunces','Noto Serif SC',serif;font-style:italic;font-size:18px;color:var(--text-primary);border-left:2px solid var(--accent);padding:12px 24px;display:inline-block;margin:20px auto;text-align:left}
+.result-section{max-width:680px;margin:0 auto;padding:40px 40px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:6px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;font-style:italic;display:flex;align-items:center;gap:16px}
+.section-title::before{content:'';width:28px;height:1px;background:var(--accent)}
+.section-content{font-size:15px;line-height:2;color:var(--text-secondary);margin-bottom:16px}
+.section-content p{margin-bottom:16px}.section-content strong{color:var(--accent-dark);font-weight:500}
+.list-item{display:flex;gap:16px;margin-bottom:20px;padding:4px 0;align-items:flex-start}
+.list-marker{font-family:'Cormorant Garamond',serif;color:var(--accent);font-size:18px;font-style:italic;min-width:24px;line-height:1.6}
+.list-content{flex:1;color:var(--text-secondary);line-height:1.9;font-size:15px}
+.list-content strong{color:var(--text-primary);display:block;margin-bottom:4px;font-weight:500}
+
+.conflict-section{max-width:680px;margin:60px auto;padding:40px;background:var(--bg-secondary);border:1px solid var(--divider);border-radius:4px}
+.conflict-meter{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.conflict-bar{flex:1;height:6px;background:var(--bg-primary);border-radius:3px;overflow:hidden}
+.conflict-fill{height:100%;background:linear-gradient(to right,#7a8b6f,#c4a882,#b56b5a);border-radius:3px;transition:width 1s cubic-bezier(0.23,1,0.32,1)}
+.conflict-value{font-family:'Fraunces',serif;font-style:italic;font-size:24px;color:var(--accent-dark);font-weight:400;min-width:60px;text-align:right}
+.conflict-level{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:4px;color:var(--text-tertiary);text-transform:uppercase;margin-bottom:16px;font-style:italic}
+.conflict-text{font-size:15px;line-height:2;color:var(--text-secondary)}
+.conflict-text p{margin-bottom:12px}
+
+.celebrity-card{background:var(--bg-secondary);padding:32px;margin:24px 0;position:relative;border:1px solid var(--divider);border-radius:4px}
+.celebrity-card::before{content:'';position:absolute;top:-1px;left:-1px;width:24px;height:24px;border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+.celebrity-card::after{content:'';position:absolute;bottom:-1px;right:-1px;width:24px;height:24px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent)}
+.celebrity-name{font-family:'Fraunces','Noto Serif SC',serif;font-size:20px;font-weight:500;color:var(--accent-dark);margin-bottom:6px}
+.celebrity-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--text-tertiary);margin-bottom:18px;letter-spacing:1px}
+.celebrity-card p{color:var(--text-secondary);line-height:1.9;font-size:14.5px;margin-bottom:12px}
+.celebrity-quote{font-family:'Fraunces','Noto Serif SC',serif;font-style:italic;color:var(--accent-dark);background:var(--bg-primary);padding:16px 20px;margin:12px 0;border-left:2px solid var(--accent);font-size:15px}
+.book-card{background:var(--bg-primary);border:1px solid var(--divider);padding:26px;margin-bottom:18px;transition:all 0.3s ease;border-radius:4px}
+.book-card:hover{background:var(--bg-secondary);transform:translateY(-3px);box-shadow:0 16px 32px var(--shadow)}
+.book-title{font-family:'Fraunces','Noto Serif SC',serif;font-size:18px;font-weight:500;color:var(--accent-dark);margin-bottom:4px}
+.book-author{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--text-tertiary);margin-bottom:14px;font-size:14px}
+.book-reason{color:var(--text-secondary);line-height:1.9;font-size:14.5px}
+.final-section{max-width:680px;margin:60px auto 0;padding:60px 40px;border-top:1px solid var(--divider);text-align:center}
+.final-content{color:var(--text-secondary);line-height:2.2;font-size:16px;font-style:italic}.final-content p{margin-bottom:16px}.final-content strong{color:var(--accent-dark);font-weight:500;font-style:normal}
+.community-box{background:var(--bg-secondary);padding:40px 32px;margin:50px 0;text-align:left;border:1px solid var(--divider);border-radius:4px}
+.community-box h3{font-family:'Fraunces','Noto Serif SC',serif;font-size:20px;font-weight:500;color:var(--accent-dark);margin-bottom:14px;text-align:center}
+.community-box .subtitle{text-align:center;color:var(--text-tertiary);font-style:italic;margin-bottom:24px;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:2px}
+.community-list{list-style:none}.community-list li{padding:12px 0;border-bottom:1px dashed var(--divider);color:var(--text-secondary);display:flex;gap:14px;align-items:flex-start;line-height:1.8;font-size:14.5px}.community-list li:last-child{border-bottom:none}.community-list li::before{content:'◦';color:var(--accent);font-size:18px;line-height:1;margin-top:4px}.community-list strong{color:var(--text-primary);display:block;margin-bottom:2px}
+.btn-restart{background:transparent;border:1px solid var(--accent);color:var(--accent-dark);padding:14px 36px;font-family:'Noto Serif SC',serif;font-size:13px;letter-spacing:4px;cursor:pointer;transition:all 0.3s ease;margin-top:30px;border-radius:2px}
+.btn-restart:hover{background:var(--accent-dark);color:var(--bg-primary);border-color:var(--accent-dark)}
+
+.fun-version .result-hero{background:linear-gradient(135deg,#fff5e6 0%,#ffe9c8 100%);border-radius:4px;max-width:760px;margin:0 auto 40px;padding:50px 30px;text-align:center}
+.fun-version .result-name{font-size:clamp(36px,6vw,56px);color:var(--accent-dark)}
+.fun-version .result-tagline{font-style:normal;font-family:'Noto Serif SC',serif;font-size:16px;background:rgba(255,255,255,0.5);border-left:3px solid var(--accent)}
+.fun-section{max-width:680px;margin:0 auto;padding:30px 40px}
+.fun-block{background:var(--bg-secondary);border-radius:4px;padding:28px 32px;margin-bottom:20px;border:1px solid var(--divider)}
+.fun-block-title{font-family:'Fraunces','Noto Serif SC',serif;font-size:18px;color:var(--accent-dark);margin-bottom:16px;font-weight:500;display:flex;align-items:center;gap:8px}
+.fun-block-title::before{content:'✦';color:var(--accent);font-style:italic}
+.fun-content{color:var(--text-primary);line-height:1.9;font-size:15px}.fun-content p{margin-bottom:10px}
+.fun-list{list-style:none}.fun-list li{padding:8px 0;display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--text-primary);line-height:1.7}.fun-list li::before{content:'◆';color:var(--accent);font-size:14px;margin-top:4px}
+.fun-dialog{background:var(--bg-primary);padding:14px 20px;border-radius:4px;margin:6px 0;font-size:14.5px;display:flex;gap:10px}
+.fun-dialog-who{color:var(--accent);font-weight:500;min-width:70px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px}
+.fun-dialog-what{color:var(--text-primary);flex:1}
+
+@keyframes slideInOption{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.options.animate .option{animation:slideInOption 0.4s ease forwards;opacity:0}
+.options.animate .option:nth-child(1){animation-delay:0.05s}.options.animate .option:nth-child(2){animation-delay:0.1s}.options.animate .option:nth-child(3){animation-delay:0.15s}.options.animate .option:nth-child(4){animation-delay:0.2s}.options.animate .option:nth-child(5){animation-delay:0.25s}
+
+@media(max-width:768px){.cover{padding:50px 24px}.cover-meta{flex-direction:row;gap:24px}.test-page{padding:40px 20px 80px}.question-text{font-size:19px}.option{padding:16px 20px;font-size:14.5px}.result-hero{padding:30px 24px 40px}.result-name{font-size:44px}.result-section,.fun-section{padding:30px 24px}.celebrity-card,.book-card,.conflict-section,.community-box{padding:24px 20px}.fun-version .result-hero{padding:40px 20px}.fun-block{padding:22px 20px}}
+</style>
+</head>
+<body>
+
+<div class="page cover active" id="coverPage" style="display:flex">
+  <div class="cover-ornament">— Money Personality Test —</div>
+  <h1 class="cover-title">金钱人格<span class="highlight">测试</span></h1>
+  <div class="cover-divider"></div>
+  <p class="cover-poem">每个人的钱包里都藏着一个秘密，<br>是我们与这个世界相处的方式。<br><br>接下来的 30 个小瞬间，<br>愿你在其中看见自己。</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span>30</span><span>道题目</span></div>
+    <div class="cover-meta-item"><span>10</span><span>种人格</span></div>
+    <div class="cover-meta-item"><span>15'</span><span>分钟</span></div>
+  </div>
+  <button class="btn-start" onclick="startTest()">开 始 测 试</button>
+</div>
+
+<div class="page test-page" id="testPage" style="display:none">
+  <div class="progress-wrapper">
+    <div class="progress-info">
+      <span class="progress-label">Progress</span>
+      <span class="progress-count"><span class="current" id="currentQ">1</span><span> / 30</span></span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="question-container">
+    <div class="question-category" id="categoryLabel"></div>
+    <h2 class="question-text" id="questionText"></h2>
+    <div class="options animate" id="optionsContainer"></div>
+    <div class="nav-buttons">
+      <button class="btn-nav" id="prevBtn" onclick="prevQuestion()" disabled>← 上一题</button>
+      <button class="btn-nav btn-next" id="nextBtn" onclick="nextQuestion()" disabled>下 一 题 →</button>
+    </div>
+  </div>
+</div>
+
+<div class="page result-page" id="resultPage" style="display:none"></div>
+
+<script>
+// ============ 题目数据 ============
+const QUESTIONS = [
+  // 第一部分 · 日常里的你
+  {
+    category: "日常里的你",
+    text: "周二晚上，你想买一袋抽纸。打开购物软件，几家店价格有高有低，有的需要凑单。你的手指停在屏幕上——",
+    options: [
+      { text: "点开价格最低的那家，研究怎么凑单最划算", scores: { saver: 2, security: 1 } },
+      { text: "随便选一家顺眼的，不想在抽纸上花心思", scores: { flyer: 2 } },
+      { text: "选那个包装设计最舒服的，贵一点也无所谓", scores: { spender: 2 } },
+      { text: "看看常买的牌子有没有折扣，没有就等等", scores: { saver: 1, security: 2 } },
+      { text: "关掉App，家里好像还有，想起来再买", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "日常里的你",
+    text: "关于优惠券：",
+    options: [
+      { text: "会主动收集，买东西前习惯性查一下", scores: { saver: 2, security: 1 } },
+      { text: "偶尔用，遇到了就用，不会特意找", scores: { flyer: 1 } },
+      { text: "几乎不用，觉得为了省那一点不值得花时间", scores: { spender: 1, flyer: 1 } },
+      { text: "用起来很有成就感，省下的就是赚到的", scores: { saver: 2 } },
+      { text: "不太清楚怎么用，也不太在意", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "日常里的你",
+    text: "下班路过常去的咖啡店，保温杯里还剩一点早上自己泡的茶。咖啡的味道飘过来——",
+    options: [
+      { text: "拎一杯就走，今天值得被一杯热咖啡温暖", scores: { spender: 2 } },
+      { text: "走过去了，杯里的茶也挺好", scores: { saver: 2 } },
+      { text: "停了一下，还是买了，但喝的时候闪过\"其实没必要\"", scores: { saver: 1, spender: 1 } },
+      { text: "完全看当下心情", scores: { flyer: 2 } },
+      { text: "看看有没有什么优惠", scores: { saver: 1, security: 1 } }
+    ]
+  },
+  {
+    category: "日常里的你",
+    text: "点外卖时看到满减活动，再凑一点就能优惠。你本来只想吃一份简单的——",
+    options: [
+      { text: "认真凑，多点的明天还能吃", scores: { saver: 2, security: 1 } },
+      { text: "不凑，就吃想吃的", scores: { spender: 1, flyer: 1 } },
+      { text: "象征性加一个最便宜的过线", scores: { saver: 1, security: 1 } },
+      { text: "换一家不搞满减的店", scores: { flyer: 2 } },
+      { text: "干脆点一份更想吃的，不纠结", scores: { spender: 2 } }
+    ]
+  },
+  {
+    category: "日常里的你",
+    text: "朋友推荐一个护肤品，价格比你平时用的贵不少。她说\"真的不一样\"——",
+    options: [
+      { text: "先记下来，回去查成分和评价", scores: { security: 2 } },
+      { text: "既然她说好我也想试试，对自己好是值得的", scores: { spender: 2 } },
+      { text: "差不多就行，平价的也能用", scores: { saver: 2 } },
+      { text: "搜一下有没有小样，试过再说", scores: { saver: 1, security: 1 } },
+      { text: "如果真的好，贵就贵点吧", scores: { spender: 1, flyer: 1 } }
+    ]
+  },
+  
+  // 第二部分 · 关系里的你
+  {
+    category: "关系里的你",
+    text: "好朋友生日快到了。你看到一个礼物，一眼就知道她会喜欢。但它超出你心里那个数大概三四成——",
+    options: [
+      { text: "就买这个，她值得", scores: { spender: 2 } },
+      { text: "找一个差不多风格但便宜些的", scores: { saver: 1, security: 1 } },
+      { text: "买预算内的，配一张写了很多话的卡", scores: { saver: 1, flyer: 1 } },
+      { text: "超了就超了，朋友生日又不是天天过", scores: { spender: 1, risktaker: 1, flyer: 1 } },
+      { text: "问问其他朋友要不要一起凑", scores: { security: 1, flyer: 1 } }
+    ]
+  },
+  {
+    category: "关系里的你",
+    text: "四个人聚餐AA。你点得少，别人点了贵的。结账时人均超过你预期不少——",
+    options: [
+      { text: "笑着付了，聚会开心最重要", scores: { spender: 2 } },
+      { text: "心里有点不舒服，但不会说", scores: { saver: 1, flyer: 1 } },
+      { text: "提议按实际点单分", scores: { saver: 2 } },
+      { text: "付了，但记在心里", scores: { saver: 2 } },
+      { text: "没特别注意，偶尔一次", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "关系里的你",
+    text: "送礼物时，你更在意的是：",
+    options: [
+      { text: "心意对得上这个人，让TA觉得\"被记住了\"", scores: { spender: 1, flyer: 1 } },
+      { text: "有设计感、有格调、拿得出手", scores: { spender: 2 } },
+      { text: "实用，别人真的能用上", scores: { saver: 1, security: 2 } },
+      { text: "让对方感受到分量", scores: { spender: 2 } },
+      { text: "能省就省，重要的是那份情", scores: { saver: 2 } }
+    ]
+  },
+  {
+    category: "关系里的你",
+    text: "你在意的人说想要一件东西。你有这笔钱，但花下去接下来的日子会紧一点——",
+    options: [
+      { text: "买，看到TA开心值得", scores: { spender: 2 } },
+      { text: "找一个价格更舒服但心意不减的替代", scores: { saver: 1, security: 1 } },
+      { text: "认真说\"等我再存一存\"", scores: { saver: 2 } },
+      { text: "两个人商量一下再说", scores: { security: 2 } },
+      { text: "除非TA明确说想要，否则不主动买", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "关系里的你",
+    text: "关于恋爱里的\"钱\"，让你最舒服的状态是：",
+    options: [
+      { text: "TA主动付，我也常常回请，一来一回很自然", scores: { spender: 1, flyer: 1 } },
+      { text: "严格AA，各花各的最自在", scores: { saver: 1, security: 1 } },
+      { text: "我愿意多付一点，照顾对方让我有满足感", scores: { spender: 2 } },
+      { text: "不讨论钱，自然就好", scores: { flyer: 2 } },
+      { text: "共同账户管大额，小额各自", scores: { security: 2 } }
+    ]
+  },
+  
+  // 第三部分 · 情绪里的你
+  {
+    category: "情绪里的你",
+    text: "一个让你很难过的夜晚。失恋、挫败，或者某个说不清的崩溃瞬间——",
+    options: [
+      { text: "一个人关着灯躺着，什么都不做", scores: { flyer: 2 } },
+      { text: "买一瓶平时舍不得的酒，或者点一顿想吃很久的外卖，好好哄自己", scores: { spender: 2 } },
+      { text: "下单一个观望很久的东西，告诉自己\"这是我应得的\"", scores: { spender: 2 } },
+      { text: "约朋友出来，有人陪着就好", scores: { flyer: 2 } },
+      { text: "报复性消费一场，第二天再说", scores: { spender: 1, risktaker: 1 } }
+    ]
+  },
+  {
+    category: "情绪里的你",
+    text: "一个心情特别好的下午，路过一家店，看到一件东西。不算贵，你也不需要。但它好看——",
+    options: [
+      { text: "直接买，开心的时候值得", scores: { spender: 2 } },
+      { text: "拍张照走开，回家还想要再回来", scores: { saver: 1, security: 1 } },
+      { text: "看看就走，我不需要", scores: { saver: 2 } },
+      { text: "翻翻有没有更便宜的同款", scores: { saver: 2 } },
+      { text: "想想最近有没有更想要的", scores: { security: 1, flyer: 1 } }
+    ]
+  },
+  {
+    category: "情绪里的你",
+    text: "发工资的那一天，你最可能做的第一件事：",
+    options: [
+      { text: "先划走一部分到另一个账户", scores: { saver: 2, security: 1 } },
+      { text: "想好好犒劳自己一下", scores: { spender: 2 } },
+      { text: "给家人/伴侣转一部分", scores: { spender: 1, flyer: 1 } },
+      { text: "看看要不要定投或研究投资", scores: { risktaker: 1, security: 1 } },
+      { text: "没什么特别反应，该干嘛干嘛", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "情绪里的你",
+    text: "关于\"为自己花钱\"：",
+    options: [
+      { text: "理所应当，辛苦挣的就是用来让自己开心的", scores: { spender: 2 } },
+      { text: "会有一点点心疼，但享受的时候还是开心", scores: { saver: 1, spender: 1 } },
+      { text: "只要有意义——学习、健康、真正喜欢的——花得心甘情愿", scores: { security: 1, flyer: 1 } },
+      { text: "很少想到为自己花钱，脑子里更多是别人", scores: { spender: 1, flyer: 1 } },
+      { text: "看心情，有时大方有时抠", scores: { flyer: 2 } }
+    ]
+  },
+  
+  // 第四部分 · 关于"赚"
+  {
+    category: "关于\"赚\"",
+    text: "关于你的工作/收入，更接近你真实状态的是：",
+    options: [
+      { text: "稳定最重要，固定工资让我安心", scores: { security: 2 } },
+      { text: "喜欢有浮动的部分，多劳多得", scores: { risktaker: 1 } },
+      { text: "更想自己做点什么，不想一直被雇佣", scores: { risktaker: 2 } },
+      { text: "挣多挣少看机缘，更在意做得开心", scores: { flyer: 2 } },
+      { text: "没怎么认真想过赚钱这件事", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "关于\"赚\"",
+    text: "如果让你选一份工作：",
+    options: [
+      { text: "月薪稳定，福利完善", scores: { security: 2 } },
+      { text: "底薪不高但提成上不封顶", scores: { risktaker: 2 } },
+      { text: "完全自由职业，收入起伏大", scores: { risktaker: 2 } },
+      { text: "创业，全部自己承担", scores: { risktaker: 2 } },
+      { text: "钱差不多就行，看哪份让我舒服", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "关于\"赚\"",
+    text: "关于\"涨薪/争取更多钱\"：",
+    options: [
+      { text: "会主动开口，准备好数据去谈", scores: { risktaker: 2 } },
+      { text: "不太好意思开口，希望被主动看到", scores: { flyer: 2 } },
+      { text: "等合适的时机", scores: { security: 2 } },
+      { text: "不合理就换工作", scores: { risktaker: 2 } },
+      { text: "没怎么认真为自己争取过", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "关于\"赚\"",
+    text: "关于\"钱\"和\"时间\"，你更倾向于：",
+    options: [
+      { text: "愿意花钱买时间", scores: { spender: 1, risktaker: 1 } },
+      { text: "愿意花时间省钱", scores: { saver: 2 } },
+      { text: "看事情，重要的花钱，不重要的花时间", scores: { security: 1, flyer: 1 } },
+      { text: "能省就省", scores: { saver: 2 } },
+      { text: "别让我浪费时间在小事上", scores: { risktaker: 1, flyer: 1 } }
+    ]
+  },
+  {
+    category: "关于\"赚\"",
+    text: "关于\"被动收入/让钱生钱\"：",
+    options: [
+      { text: "这是我很重要的目标，正在努力建立", scores: { risktaker: 1, security: 1 } },
+      { text: "有在做一些基础的，比如定投", scores: { security: 2 } },
+      { text: "知道这个概念，但还没开始", scores: { flyer: 1 } },
+      { text: "听过，觉得离我有点远", scores: { flyer: 2 } },
+      { text: "没兴趣，靠劳动挣的更踏实", scores: { saver: 1, flyer: 1 } }
+    ]
+  },
+  
+  // 第五部分 · 选择与梦想
+  {
+    category: "选择与梦想",
+    text: "如果突然多出一大笔钱，限时一小时决定怎么花，不许存起来——",
+    options: [
+      { text: "订一张机票，去那个想了很久的地方", scores: { spender: 1, risktaker: 1 } },
+      { text: "报一门课，或者买一直想研究的工具", scores: { security: 1, risktaker: 1 } },
+      { text: "给家人/在乎的人安排点什么", scores: { spender: 2 } },
+      { text: "把收藏夹里没舍得的都买了", scores: { spender: 2 } },
+      { text: "升级一下住的地方", scores: { security: 1, flyer: 1 } }
+    ]
+  },
+  {
+    category: "选择与梦想",
+    text: "理想中五年后的生活：",
+    options: [
+      { text: "账户里的数字稳定增长", scores: { saver: 1, security: 2 } },
+      { text: "做着热爱的事，挣多挣少随缘", scores: { flyer: 2 } },
+      { text: "有自己的一份事业", scores: { risktaker: 2 } },
+      { text: "和爱的人在一起，钱够用就好", scores: { flyer: 2 } },
+      { text: "有选择的自由", scores: { security: 1, flyer: 1 } }
+    ]
+  },
+  {
+    category: "选择与梦想",
+    text: "关于\"体验\"的花销（旅行、演唱会、展览、好餐厅）：",
+    options: [
+      { text: "挺多的，体验上的钱我不太省", scores: { spender: 2, risktaker: 1 } },
+      { text: "有预算，超了就不去", scores: { saver: 1, security: 2 } },
+      { text: "能便宜就便宜", scores: { saver: 2 } },
+      { text: "看心情", scores: { flyer: 2 } },
+      { text: "基本不花", scores: { saver: 1, flyer: 1 } }
+    ]
+  },
+  {
+    category: "选择与梦想",
+    text: "关于\"存款\"：",
+    options: [
+      { text: "它是我的底气", scores: { saver: 2, security: 1 } },
+      { text: "它是工具，为具体目标服务", scores: { security: 2 } },
+      { text: "不太关注数字，够用就行", scores: { flyer: 2 } },
+      { text: "比起存量，更在意赚的能力", scores: { risktaker: 2 } },
+      { text: "说实话不太清楚账户里有多少", scores: { flyer: 2 } }
+    ]
+  },
+  
+  // 第六部分 · 风险与未知
+  {
+    category: "风险与未知",
+    text: "朋友拉你投资，她很看好，说有机会翻倍。你有闲钱——",
+    options: [
+      { text: "请她把资料发我，研究几天再说", scores: { security: 2, risktaker: 1 } },
+      { text: "直接说不，扛不住可能的亏损", scores: { saver: 2 } },
+      { text: "投一点点表示支持", scores: { flyer: 1, spender: 1 } },
+      { text: "信任这个朋友就跟", scores: { risktaker: 2 } },
+      { text: "谢谢，不是我擅长的领域", scores: { flyer: 2 } }
+    ]
+  },
+  {
+    category: "风险与未知",
+    text: "在两个选项中，你更倾向于：",
+    options: [
+      { text: "稳稳拿到一笔确定的钱", scores: { saver: 1, security: 2 } },
+      { text: "有一半概率拿到三倍的钱，另一半什么都没有", scores: { risktaker: 2, flyer: 1 } }
+    ]
+  },
+  {
+    category: "风险与未知",
+    text: "如果明天突然失去收入，你能从容撑多久？",
+    options: [
+      { text: "很久，有足够储备", scores: { saver: 2, security: 1 } },
+      { text: "一段时间，应急金够", scores: { saver: 1, security: 1 } },
+      { text: "一小段，可能很快紧张", scores: { spender: 1, flyer: 1 } },
+      { text: "不太确定，没算过", scores: { flyer: 2 } },
+      { text: "几乎立刻就会有麻烦", scores: { spender: 1, flyer: 1 } }
+    ]
+  },
+  {
+    category: "风险与未知",
+    text: "突然要拿出一笔应急的钱（医疗/意外），你的第一反应：",
+    options: [
+      { text: "心里一紧，应急金顶上", scores: { saver: 2, security: 1 } },
+      { text: "打乱计划，但能凑出来", scores: { saver: 1, security: 1 } },
+      { text: "刷信用卡或跟人周转", scores: { spender: 1, flyer: 1 } },
+      { text: "拿不出来，会非常焦虑", scores: { flyer: 2 } },
+      { text: "冷静处理，然后复盘", scores: { security: 2 } }
+    ]
+  },
+  
+  // 第七部分 · 那些矛盾的瞬间
+  {
+    category: "那些矛盾的瞬间",
+    text: "你有没有过这样的时刻——为了省一点小钱花了很多时间，转头又在一件\"不必要\"的东西上很轻易地花了大钱：",
+    options: [
+      { text: "经常，这就是我的日常", scores: { saver: 1, spender: 1 }, conflict: 3 },
+      { text: "偶尔，不是常态", scores: { saver: 1 }, conflict: 1 },
+      { text: "很少，我比较一致", scores: {}, conflict: 0 },
+      { text: "从没有", scores: {}, conflict: 0 },
+      { text: "也许有，没留意过", scores: { flyer: 1 }, conflict: 1 }
+    ]
+  },
+  {
+    category: "那些矛盾的瞬间",
+    text: "对你来说最难省的钱是哪一种：",
+    options: [
+      { text: "给家人、朋友、喜欢的人的", scores: { spender: 2 } },
+      { text: "好看的衣服、好吃的、有设计感的", scores: { spender: 2 } },
+      { text: "学习、成长、让自己变好的", scores: { security: 1, risktaker: 1 } },
+      { text: "情绪崩溃时安慰自己的", scores: { spender: 1, flyer: 1 } },
+      { text: "没什么特别难省的", scores: { saver: 2 } }
+    ]
+  },
+  {
+    category: "那些矛盾的瞬间",
+    text: "对你来说最容易省的钱是哪一种：",
+    options: [
+      { text: "日用品、水电、通勤", scores: { saver: 2 } },
+      { text: "社交和人情", scores: { saver: 1, flyer: 1 } },
+      { text: "吃穿这些基础消费", scores: { saver: 2 } },
+      { text: "没觉得哪个容易省", scores: { spender: 2 } },
+      { text: "所有能省的都在省", scores: { saver: 2 } }
+    ]
+  }
+];
+
+// ============ 10种人格的映射 ============
+// 主人格 + 次人格 → 细分人格
+const PERSONALITY_MAP = {
+  "saver-security": "fortress",     // 磐石型
+  "security-saver": "fortress",
+  "spender-risktaker": "blaze",     // 燃烧者型
+  "risktaker-spender": "blaze",
+  "spender-flyer": "dandelion",     // 蒲公英型
+  "flyer-spender": "dandelion",
+  "risktaker-flyer": "nomad",       // 游牧者型
+  "flyer-risktaker": "nomad",
+  "saver-flyer": "hermit",          // 隐士型
+  "flyer-saver": "hermit",
+  "security-flyer": "hermit",       // 隐士型（含从容者）
+  "flyer-security": "hermit",
+  "security-risktaker": "hunter",   // 战略猎手型
+  "risktaker-security": "hunter",
+  "saver-spender": "cycler",        // 克制的享乐家
+  "spender-saver": "curator",       // 精致主义者
+  "saver-risktaker": "underdog",    // 暗黑赌徒
+  "risktaker-saver": "underdog",
+  "security-spender": "planner",    // 体验规划师
+  "spender-security": "planner"
+};
+
+// ============ 温柔版人格数据 ============
+const PERSONALITIES_GENTLE = {
+  fortress: {
+    name: "磐石型",
+    nameEn: "The Fortress",
+    combo: "省钱王 × 求稳者",
+    tagline: "你的底色，是对\"稳定\"的深深向往。",
+    
+    identity: `也许你是那种工资到账后会想"先把一部分划走储蓄起来"的人。
+
+你大致知道自己每个月的钱流向哪里。买东西时会比价格、等折扣。你总是能够预想到"未来可能的风险"，并为此留出充足的缓冲空间。退休、意外、父母的健康、孩子的学费——这些事情你常常比身边的人想得更早。
+
+你偶尔会怀疑自己是不是紧绷了一些。但到了真正需要你的时刻，你几乎从未让爱的人失望过。
+
+信用卡的透支额度对你意味着什么？或许你很少用到它。欠钱的感觉让你难受，无论对象是银行还是朋友。
+
+做重要决定之前，你大概是那个会做最多功课的人。看评价、查资料、列对比——你不享受这个过程，只是觉得提前知道得越多，出错的概率就越小。
+
+你睡得最安稳的夜晚，账户里的数字也在安稳地长着。`,
+    
+    origin: `每个磐石型的人背后，都有属于自己的故事。
+
+或许你见过身边的人因为没有准备而狼狈过；或许你早早就体会到"意外"这两个字的重量；亦或是，你天生对"不确定性"敏感，于是通过做好充足的准备来让自己安心。
+
+无论如何，你把这份警觉转化成了能力——规划、记录、积累、配置、研究、评估。这些事有人也许觉得繁琐，你做起来却有一种熟悉的安定感。
+
+如果你是女性，这种倾向或许还和一些外部的声音相关——关于"女孩子要会过日子"、关于"要懂得为家里着想"。这些话你不一定认同，但它们或许在某个角落里沉淀下来，和你自己的性格合成了今天的你。`,
+    
+    lights: [
+      { title: "你大概是身边的人遇到突发状况时心里第一个浮现的名字", content: "因为你总是有准备。你的应急金、你的保险、你的规划——它们不一定会被用到，但它们的存在本身，就给爱你的人一种踏实感。" },
+      { title: "你有一种稀缺的能力——为远处的东西忍耐眼前", content: "为一个五年后的目标，现在就开始节制。这件事听起来简单，做到的人却不多。你身上有一种老派的耐心。" },
+      { title: "把钱交给你管的人，是心安的", content: "你不会拿别人的信任去冒险。你推荐的东西，大概都是靠谱的，因为你从来不敷衍。" }
+    ],
+    
+    shadows: [
+      { title: "你或许偶尔会察觉——自己好像很久没有\"不必要地开心\"过了", content: "那束心仪了很久的花、那顿\"太贵\"的饭、那个\"还不是时候\"去的地方——它们可能一直在你的心愿清单里，却很少被实现。" },
+      { title: "你的\"足够\"可能是一个会一直被延后的终点", content: "应急金攒够了半年想要一年，够了一年想要两年。这份向前推的焦虑感，有时候会悄悄地消耗你。" },
+      { title: "你的谨慎有时候或许让你做决定的速度越来越慢", content: "想买的东西挑了三个月没下单，想做的事准备了一年还没开始。研究得越多，反而越举棋不定。" },
+      { title: "在关系里，你或许偶尔会担心自己变成那个\"总在提醒现实的人\"", content: "你的理性常常是对的，但亲近的人有时候需要的是一起做梦的人。" }
+    ],
+    
+    advice: [
+      { title: "想一想\"足够\"对你来说是什么样子", content: "试着写下来——存款到什么数、保险覆盖到什么程度、负债清到什么时候，你就可以松一口气。" },
+      { title: "允许一次\"不划算\"的消费", content: "买一件后来证明没那么必要的东西。去一家朋友推荐但你本来不会选的餐厅。这种偶尔放纵的快乐，慢慢会变成一种新的能力。" },
+      { title: "给某些决定设一个研究时限", content: "三天、一周——到时间了就选一个\"还不错\"的。\"最好\"常常只存在于研究里，\"还不错\"才是可以开始过的生活。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "苏珊·奥尔曼",
+        title: "美国个人理财作家",
+        story: "奥尔曼童年贫寒，父亲早年生意失败让她对\"钱能让家庭稳定或崩塌\"有了很深的体会。她成年后的第一份工作是服务员，做了七年。后来她成为美国最知名的理财作家之一。",
+        quote: "真正的财务自由，不是你有多少钱，而是你夜里能睡得多安稳。"
+      },
+      {
+        name: "张德芬",
+        title: "华语心灵作家",
+        story: "张德芬早年在台视做主播，后来赴美攻读MBA，做过IBM的营销经理。她的财务底色是先用十几年建立稳固的职业基础，再去做她真正想做的事——心灵写作。后来她用攒下的积蓄支持自己转型，写出《遇见未知的自己》。",
+        quote: "我不是一个冒险的人。我是先把后路想清楚，才敢往前走的人。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《稀缺：我们是如何陷入贫穷与忙碌的》",
+        author: "塞德希尔·穆来纳森 / 埃尔德·沙菲尔",
+        reason: "这本书或许会帮磐石型的你看见一件事——长期处在\"不够\"的焦虑里，会悄悄消耗一个人的心智。越紧张，越容易忽略真正重要的东西。它不会劝你别节俭，它会让你看清：\"稀缺感\"本身也是一种成本。"
+      },
+      {
+        title: "《金钱的灵魂》",
+        author: "林恩·特威斯特",
+        reason: "作者做了三十年国际筹款工作，接触过最富的人也接触过最穷的人。她想说的事很简单——\"够\"不是一个金额，是一种心态。对磐石型的你，这本书像一剂慢慢起效的药。"
+      }
+    ],
+    
+    closing: `磐石这个意象本身就很美。
+
+它意味着——**无论风雨，我都在**。
+
+你的家人知道你在。你爱的人知道你在。很多年以后的你自己，也会感谢今天这个一笔一笔攒着的你。
+
+愿你的安全感，除了来自账户里的数字，
+也来自某一个你终于允许自己"不必要"地开心了的下午。`
+  },
+  
+  blaze: {
+    name: "燃烧者型",
+    nameEn: "The Blaze",
+    combo: "消费狂 × 冒险家",
+    tagline: "你的底色，是把生命过成一场盛大的篝火。",
+    
+    identity: `也许你是朋友圈里那个"最会生活"的人。
+
+你去的餐厅是大家还没听说过的。你订的旅行是别人做攻略都嫌麻烦的地方。你不是在炫耀——你是真的喜欢在别人还没走过的地方走。
+
+你花钱不太算账。你打心底里觉得钱是用来换生命体验的，计较太多就亏了。你刷卡时眼睛都不眨；但你买的每一件东西、去的每一个地方，都有属于自己的理由——哪怕那个理由只是"我想"。
+
+你会为一个朋友的创业项目投钱，哪怕明知道可能打水漂。你会为一场演唱会飞去另一个城市。你会在某个加班到深夜的晚上，突然下单一张一周后的机票，只因为你需要透一口气。
+
+你身边的人常说你"活得痛快"。只有你自己知道，这份痛快背后偶尔也会有一点点账单来时的心虚。但你很快会把它压下去——你最怕的，从来不是没钱，是没活过。`,
+    
+    origin: `每个燃烧者的背后，都有属于自己的故事。
+
+或许你经历过某段被规训、被克制的日子，长大以后想夺回那份主动权；或许你从小就被教导"钱是用来享受生活的"，这份开放的底色一直留在你身上；亦或是，你曾经历过某个"让你突然意识到人生很短"的瞬间，从那以后看钱的方式就不一样了。
+
+无论源头是哪一种，你把这份对生命的感受力转化成了一种独特的慷慨——对美、对关系、对体验、对可能性，都舍得。
+
+如果你是女性，这份燃烧里或许还有一层东西——对"女性就该勤俭持家"这类声音的温柔的反叛。你想做那个敢买、敢花、敢要、敢闪闪发光的自己。`,
+    
+    lights: [
+      { title: "你大概是那个能让一群人的记忆变亮的人", content: "你的生日最热闹，你的聚会最有趣，你送的礼物总是让人惊喜。这些不是在花钱——是在为关系织一张密密的网。" },
+      { title: "你有一种把平凡日子过出仪式感的天赋", content: "一顿普通的晚饭，你会摆花；一个普通的朋友生日，你会记得她随口提过一次的东西。这份用心，不是花钱买的。" },
+      { title: "你有一种很多人没有的勇气——敢下注", content: "敢辞职，敢搬家，敢投资，敢爱。你知道每一次\"敢\"都可能输，但你更知道——不敢是另一种形式的输。" }
+    ],
+    
+    shadows: [
+      { title: "你或许会察觉——自己偶尔在用\"未来的你\"补贴\"现在的你\"", content: "信用卡账单、预期收入还没到就已经花完……这些有时会成为一种节奏。心里清楚，但告诉自己\"下个月就好了\"。下个月来了，还是一样。" },
+      { title: "有些时候，\"花钱\"可能成为了某种更深的东西的出口", content: "孤独的时候购物，失落的时候出游，愤怒的时候报复性消费。区分\"真正的享受\"和\"用消费盖过情绪\"，是燃烧者一生的功课。" },
+      { title: "在亲密关系里，你或许偶尔会察觉身边人眼里的担心", content: "他们爱你的鲜活，但也害怕你的不稳定。你偶尔也会在深夜想——如果真的有一天扛不住了，谁可以依靠。" }
+    ],
+    
+    advice: [
+      { title: "给\"未来的你\"留一盏灯", content: "每个月工资一到，自动划走一小部分，不多，10%也好。这笔钱不要碰。五年后某一天你想做一件事、想换一种活法，这盏灯就是你的勇气。" },
+      { title: "在花钱之前，加一个小小的停顿", content: "问自己一句——这笔钱是我想花，还是我在用它盖过什么。前者就花得痛快，后者值得你停一下。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "可可·香奈儿",
+        title: "时装设计师",
+        story: "十二岁失去母亲，在孤儿院长大。三十岁时借了情人的钱开第一家店。四十岁时已是巴黎最有名的设计师之一。她一生从来没有\"稳妥\"过——投资过无数新项目，也失败过不止一次。纳粹占领期间她的事业几乎全毁，七十岁时从零开始重建品牌。",
+        quote: "我从不为未来做计划，我只为此刻。"
+      },
+      {
+        name: "弗里达·卡罗",
+        title: "墨西哥画家",
+        story: "卡罗一生经历车祸重伤、多次手术、婚姻动荡，但她从未停止燃烧。她把所有的钱花在颜料、派对、朋友和她深爱的人身上。她的家Casa Azul永远挤满了来访的客人、鲜花和音乐。她穿最鲜艳的裙子，戴最夸张的首饰，即使躺在病床上也要画画、喝酒、大笑。",
+        quote: "我曾经以为我是世界上最奇怪的人，但后来我想，世界上有那么多人，一定有人和我一样。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《金钱心理学》",
+        author: "摩根·豪泽尔",
+        reason: "这本书不会说教你\"别乱花钱\"。它会带你看见——你花钱的方式，其实是你内心故事的一个出口。理解了\"我为什么这样花钱\"，你会开始更清醒地选择\"我想为什么花钱\"。"
+      },
+      {
+        title: "《反脆弱》",
+        author: "纳西姆·尼古拉斯·塔勒布",
+        reason: "作者会教你一个或许能改变一生的概念——\"杠铃策略\"：把人生结构分成90%的极度安全 + 10%的极度冒险。对燃烧者来说，这本书像是一本让燃烧可持续的说明书。"
+      }
+    ],
+    
+    closing: `燃烧这件事，从来都不坏。
+
+这个世界太多人把日子过得像流水账——没有惊喜，没有故事，没有那些会被朋友记住的夜晚。你不是。你为生活加了很多光。
+
+你可以继续热烈，继续敢，继续为那些让你心动的东西花钱。
+只是也请你，偶尔留一点柴火给明天的自己。
+
+愿你的火不是一场烟花，
+是一盏会陪你走很远的灯。`
+  },
+  
+  dandelion: {
+    name: "蒲公英型",
+    nameEn: "The Dandelion",
+    combo: "消费狂 × 随性者",
+    tagline: "你的底色，是想把温暖散播给每一个靠近你的人。",
+    
+    identity: `也许你是那种身上随时带着给朋友的小礼物的人。
+
+路过一家店，看到一个小东西，会想"这好像是她会喜欢的"，然后买下来。收到礼物的朋友或许早就忘了自己曾经提过，但你记得。
+
+和朋友吃饭你常常抢着买单。几百块的账单远远抵不过"请到了喜欢的人吃饭"的那份满足。
+
+你对钱没有特别强的占有欲。赚了会花，花了再赚。你不太查账户余额，也不怎么做预算。钱对你而言更像是流动的——从你这里流到别人那里，又从别人那里流回来，构成了你和这个世界之间温暖的循环。
+
+你身边的人大概都享受过你的慷慨。只有你自己偶尔会在某个深夜算账的时候想——钱是怎么都花出去了的。
+
+和燃烧者不同，你花钱的终点更多是"别人"。你的快乐建立在"让爱的人开心"上面。给自己花钱时你反而会犹豫。`,
+    
+    origin: `每个蒲公英的背后，都有属于自己的故事。
+
+或许你成长在一个把"给予"看得比"拥有"更重要的家庭；或许你很早就发现——用心挑的礼物，比一句"我爱你"更让对方记得；亦或是，你天生是一个被关系滋养的人，给出去本身就是你的快乐来源。
+
+无论源头是哪一种，你把这份温柔转化成了一种独特的表达方式——用物质承载心意，用小小的付出维系大大的情感。你记得的生日比任何人都多。
+
+如果你是女性，这份给予的倾向或许还和一些更深的东西有关。女性常常被期待成为"照顾他人"的那个角色。有些给予是自然的流露，也有些给予，或许是在用"付出"确认自己被需要。值得你偶尔停下来看一看。`,
+    
+    lights: [
+      { title: "你大概是朋友圈里那个\"被很多人记得\"的人", content: "你送过的礼物、你请过的饭、你记得的每一个小细节——这些东西构成了一种别人替代不了的温度。很多年以后，朋友想起你的时候，心里会暖一下。" },
+      { title: "你对\"关系\"的敏感是一种天赋", content: "你能看见别人需要什么，记得别人提过什么。这份细腻，让你周围的人都觉得被看见、被在乎。" },
+      { title: "你对钱不执着", content: "这在一个\"钱越多越好\"的时代，其实是一种稀有的清醒。你知道金钱最好的用法，是让爱的人感到被爱。" }
+    ],
+    
+    shadows: [
+      { title: "你或许偶尔会察觉——自己对别人比对自己更慷慨", content: "给朋友买的礼物从不心疼，给自己买东西的时候却会犹豫很久。这份差别值得你温柔地看一看。" },
+      { title: "有时候，\"给予\"也可能藏着一种隐秘的需求", content: "通过不断付出来确认自己被需要、被喜欢。这并不糟糕，但如果付出开始变成负担，或许可以停下来问问自己——我是在给，还是在换。" },
+      { title: "你的财务状况或许常常处于\"够用但没余粮\"的状态", content: "钱来得不少，但攒不下来。遇到突发情况时会有些慌。" }
+    ],
+    
+    advice: [
+      { title: "把自己列进那份\"值得送礼物\"的清单里", content: "下次路过一家店看到一个小东西，如果你脑子里第一反应是\"这好像是XX会喜欢的\"，停一下，再想一想——有没有什么是\"我自己会喜欢的\"。给自己买一次。" },
+      { title: "允许钱在你手里停留一段时间", content: "设一个自动转账，工资到账的那一刻就划走一小笔到另一个账户。不多，10%就好。让这笔钱不成为你日常消费的选项。它会慢慢长大，变成你未来某一天的底气。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "奥黛丽·赫本",
+        title: "演员、联合国儿童基金会大使",
+        story: "赫本在晚年把几乎所有的精力都投入到联合国儿童基金会。她去过索马里、埃塞俄比亚、孟加拉国——那些最贫穷、最动荡的地方。她的儿子在回忆母亲时说过：\"她不是在做慈善，她是在还债。她总说——我小时候被联合国救济过，现在轮到我。\"",
+        quote: "我曾被爱过，所以我也要爱。"
+      },
+      {
+        name: "杨丽萍",
+        title: "舞蹈家",
+        story: "杨丽萍最著名的是《雀之灵》，但很少人知道，她把自己的大部分演出收入都用来培养云南山区的年轻舞者。她自己的生活极简，住在大理的一栋小房子里。但她在\"培养下一代\"这件事上极度慷慨。",
+        quote: "我这一辈子挣的钱，就是用来把跳舞这件事传下去的。我自己花不了多少。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《给予》",
+        author: "亚当·格兰特",
+        reason: "沃顿商学院教授的作品。这本书会帮蒲公英看清一件事——给予者有两种：一种越给越富足，一种越给越枯竭。区别不在于\"给多少\"，而在于\"怎么给\"。这本书会让你的慷慨变得更可持续。"
+      },
+      {
+        title: "《非暴力沟通》",
+        author: "马歇尔·卢森堡",
+        reason: "这本书看起来和钱无关，但它会帮蒲公英识别一件很重要的事——你的\"给予\"，有多少是出于爱，有多少是出于对\"不被爱\"的担心。学会温柔地照顾自己的需求，你的付出会变得更自由。"
+      }
+    ],
+    
+    closing: `蒲公英这个意象很美。
+
+风一吹，种子散向四方，在别人的土地上开出花来。
+
+你的朋友是你的花，你的家人是你的花，甚至那些只见过一两次面就记得你好的人，也是你的花。
+
+愿你在为别人撒种子的同时，
+也在自己脚下留一片土地，
+让自己也有开花的地方。`
+  },
+  
+  nomad: {
+    name: "游牧者型",
+    nameEn: "The Nomad",
+    combo: "冒险家 × 随性者",
+    tagline: "你的底色，是比起占有，更想看看这个世界还有什么可能。",
+    
+    identity: `也许你是那种看着同龄人开始买房、结婚、攒学区房时，心里默默想"真的需要这些吗"的人。
+
+你可能一年换两次城市，三年换一份工作。不是因为待不住，是因为总有更想去看看的地方、更想试试的事情。身边的人有时候会问你这样飘着不累吗。你笑一笑。对你来说，"定下来"才是累的。
+
+你对物质不算苛求，但也不节省。钱在你这里更像是通行证——用来换机票、换体验、换某个地方的房租、换一段全新的经历。存款对你来说是个模糊的概念，重要的是"我有没有钱去做下一件想做的事"。
+
+你身边的朋友可能分成两类——一类非常羡慕你，一类非常担心你。你自己大多数时候是快乐的，只有偶尔在某个深夜，会有一丝"我这样漂着，以后怎么办"的闪念。但第二天太阳出来，又好了。`,
+    
+    origin: `每个游牧者的背后，都有属于自己的故事。
+
+或许你很早就感受到"标准化生活"的窒息——看着身边的人按部就班，心里隐隐觉得"这不是我想要的"；或许你经历过某段让你重新理解"时间"的日子，从那以后你把"体验"放在了"积累"之上；亦或是，你天生就对"未知"着迷，安稳的生活对你来说像一件不合身的衣服。
+
+无论源头是哪一种，你把这份对远方的向往转化成了一种真正的能力——敢走，敢换，敢重新开始。很多人一辈子都不敢做的事，你已经做过好几次了。
+
+如果你是女性，这份选择或许还承受着一些额外的声音——关于"女孩子要早点安定下来"、关于"不要让自己太漂着"。这些声音你大概听过无数次，但你也一次次选择了忠于自己。`,
+    
+    lights: [
+      { title: "你有一种很多人都羡慕但做不到的能力——真的敢走", content: "敢辞掉稳定的工作，敢离开熟悉的城市，敢放下一段关系重新开始。每一次\"敢\"背后都有代价，但你愿意承担。" },
+      { title: "你对\"可能性\"的感知力很强", content: "别人看到的是风险，你看到的是机会。你身上有一种天然的乐观——\"没关系，走到哪里算哪里，总会有办法\"。" },
+      { title: "你积累的是别人看不见的财富", content: "你去过的地方、认识的人、经历的事——它们不在账户里，但它们长在了你身上。三十年后回看，你会发现自己过了好几辈子的生活。" }
+    ],
+    
+    shadows: [
+      { title: "你或许偶尔会察觉——自己对\"长期\"有一种本能的抗拒", content: "定期投资、长期储蓄、多年规划——这些词让你本能地想逃。但某些\"长期\"的东西，确实是需要时间才能长出来的。完全跳过它们，未来的某一天可能会有代价。" },
+      { title: "\"自由\"也可能成为一种回避", content: "漂着很爽，但有时候漂着也是在逃避某些必须面对的东西——一段深入的关系、一个需要坚持的承诺、一件必须长期做才能做成的事。值得偶尔停下来问问自己，你的远方里有没有藏着某种不想面对的近处。" },
+      { title: "你对\"应急\"的准备可能不够", content: "生病、意外、亲人需要帮助——这些事情来的时候不看你的状态。" }
+    ],
+    
+    advice: [
+      { title: "为\"未来的某一天\"留一笔钱", content: "不一定是存款，可以是健康保险、意外保险、一点长期定投。它们的存在不是为了困住你，而是为了让你在真的遇到事情时，还能继续自由地走。" },
+      { title: "偶尔给自己一个\"长期\"的实验", content: "选一件小事——一本书读完、一门课学到底、一个地方住满一年——看看\"坚持\"这件事能给你带来什么。也许你会发现，有些东西只有停下来才能真正看清。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "三毛",
+        title: "作家",
+        story: "三毛一生辗转了很多地方——西班牙、德国、撒哈拉、加那利群岛。她和荷西的故事之所以动人，很大程度上是因为他们把\"漂着\"过成了诗。她一生没有积累太多物质财富，但她留下了几代人都在读的文字。她的\"财富\"从来不在账户里。",
+        quote: "如果有来生，要做一棵树，站成永恒。一半在尘土里安详，一半在风里飞扬。"
+      },
+      {
+        name: "伊莎贝拉·伯德",
+        title: "19世纪英国女探险家",
+        story: "伯德是维多利亚时代最不像维多利亚女性的人。她独自走过日本内陆、骑马穿越落基山脉、深入中国西藏和波斯。那个年代的女性被要求安坐家中，她却把所有的钱都花在了下一段旅途上。她在家时百病缠身，一出发就活力充沛。",
+        quote: "我发现自己越走越远，越走越不想回头。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《瓦尔登湖》",
+        author: "亨利·戴维·梭罗",
+        reason: "梭罗一个人在瓦尔登湖边住了两年，自己盖房子、种地、过一种近乎原始的生活。他想回答一个问题——\"最少需要多少，才能真正地活着？\"对游牧者来说，这本书像一面镜子。"
+      },
+      {
+        title: "《金钱的灵魂》",
+        author: "林恩·特威斯特",
+        reason: "作者做了三十年国际筹款。她想说的事很简单——金钱的意义是由我们赋予的。对游牧者的你，这本书会帮你回答一个你可能一直在回避的问题——你和钱的关系，到底是什么。这个问题回答了，你的漂泊会变得更笃定。"
+      }
+    ],
+    
+    closing: `游牧者这个身份本身就很美。
+
+你在很多人都没勇气出发的路上走着。你用自己的脚步证明，人生不是只有一种活法。
+
+愿你继续走，继续看，继续让生命里长满你自己都还不知道的惊喜。
+
+只是也请你在路上记得偶尔回头——
+看看有没有什么东西，是你愿意为之停下来的。
+找到它之后你就知道——
+漂泊和停留，从来不矛盾。`
+  },
+  
+  hermit: {
+    name: "隐士型",
+    nameEn: "The Hermit",
+    combo: "省钱王 × 随性者",
+    tagline: "你的底色，是对\"少即是多\"的自然认同。",
+    
+    identity: `也许你是那种衣柜里来来回回就那几件衣服，但每一件都穿得很舒服的人。
+
+你不太买新东西。不是买不起，是真的觉得不需要。身边的人换手机、换包包、换家具的时候，你默默地还在用着五年前买的。对你而言，一件东西只要还能用，就没有理由换。
+
+你对"消费主义"有一种天然的距离感。双十一、节日促销、限时折扣——这些词对你几乎没有吸引力。你不是在"抗拒"，你只是从来不觉得它们和自己有关。
+
+你的生活成本比大多数同龄人低很多。你可能住在一个简单的地方，吃简单的食物，过简单的日子。但你并不觉得匮乏——恰恰相反，你觉得自己过得挺好。
+
+偶尔有人会劝你"对自己好一点"、"多花点钱享受生活"。你笑一笑。他们不知道的是，你现在的生活，就是你最想要的生活。
+
+你对钱没有强烈的感觉——不焦虑，不兴奋，不执着。钱来了不推，走了不留。这份淡然让你在一个人人都在追逐更多的时代，过着一种安静的、自洽的生活。
+
+有时候你会在美或意义面前突然慷慨——一本装帧漂亮的书、一次打动你的展览、一件触动了什么的手工物件。这种时刻不常有，但每一次都很笃定。`,
+    
+    origin: `每个隐士的背后，都有属于自己的故事。
+
+或许你成长在一个重视精神生活多于物质的家庭；或许你某个阶段体验过"拥有很多"之后，发现那并不能带来更多快乐；亦或是，你天生就对"简单"有亲近感——不需要理由，就是喜欢那种清爽。
+
+无论源头是哪一种，你把这份对简朴的认同转化成了一种自洽的生活方式——低欲望，低消耗，低焦虑。你用很少的物质，过出了很多人羡慕的松弛。
+
+如果你是女性，这份选择或许偶尔会遇到一些外部的声音——关于"女人要懂得打扮自己"、关于"要对自己好一点"。你大概早就学会了在这些声音里保持自己的节奏。`,
+    
+    lights: [
+      { title: "你有一种很稀缺的东西——内在的满足感", content: "不需要通过购买来让自己开心，不需要通过拥有来证明自己的存在。这份笃定是很多人花一辈子都求不来的。" },
+      { title: "你的生活有一种天然的抗风险能力", content: "因为你的需求少，你能承受的变故就大。别人会因为收入下降而崩溃的事情，你可能根本不受影响。低欲望在某种程度上，就是自由。" },
+      { title: "你对\"真正重要的事情\"有清晰的感知", content: "你省下的不只是钱，还有被物质占据的注意力。你可以把那些注意力放在你真正在意的事情上——一本书、一段关系、一件你想做的事。" }
+    ],
+    
+    shadows: [
+      { title: "你或许偶尔会察觉——自己对\"金钱\"的完全漠视，也有代价", content: "不关心账户余额，不做长期规划，对理财、投资、保险都不感兴趣。这份漠视在年轻时没什么问题，但时间是一个会累积的东西。几十年后，你可能会发现自己需要的其实比想象的多一些。" },
+      { title: "你的简朴有时候会影响到亲近的人", content: "伴侣、孩子、父母——他们可能不完全和你一样低欲望。值得你温柔地看一看，你的\"不需要\"有没有在无意中变成对他们\"需要\"的忽视。" },
+      { title: "有些时候，\"不在乎\"和\"逃避\"的边界很模糊", content: "不在乎钱是一种境界，但完全不去了解钱、不去处理和钱相关的事情，也可能是在回避。两者之间的区别，只有你自己最清楚。" }
+    ],
+    
+    advice: [
+      { title: "建立一个最简单的\"财务保底系统\"", content: "你不需要变成理财专家，只需要三件事——一份医疗保险、一笔能撑三到六个月的应急金、一个自动定投的账户。建好之后你可以继续忘掉它们。它们的存在，是让你的简朴可以一直安稳地延续下去。" },
+      { title: "允许生活里偶尔有一点\"非必要\"的美", content: "一盆植物、一个手工的杯子、一本装帧漂亮的书——这些东西不是消费主义，是让简朴的生活不至于变成贫瘠的那一点光。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "特蕾莎修女",
+        title: "诺贝尔和平奖得主",
+        story: "特蕾莎修女在加尔各答的贫民窟里工作了近五十年。她没有任何个人财产，穿最简单的白色棉纱丽，吃最朴素的食物。但她一手建立的仁爱传教修女会遍布全球，帮助了无数人。她的一生证明了一件事——一个人可以不拥有任何东西，却富足到照亮整个世界。",
+        quote: "如果你有两件外衣，把一件给没有的人。"
+      },
+      {
+        name: "向田邦子",
+        title: "日本女作家、编剧",
+        story: "向田邦子是日本最受爱戴的女性作家之一。她一生住在简朴的公寓里，穿朴素的衣服，没有奢侈品。她把几乎所有的时间和精力都给了写作。她的散文集《父亲的道歉信》至今被无数人反复阅读。她活得安静、专注、自足——对她来说，一支笔和一叠稿纸就是全部。",
+        quote: "所谓幸福，就是在不需要太多东西的日子里，感到心满意足。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《瓦尔登湖》",
+        author: "亨利·戴维·梭罗",
+        reason: "这本书几乎就是写给隐士的。梭罗在湖边住了两年，想回答一个问题——\"最少需要多少，才能真正地活着？\"你读这本书会有一种\"原来有人和我想的一样\"的共鸣。"
+      },
+      {
+        title: "《小狗钱钱》",
+        author: "博多·舍费尔",
+        reason: "这本书是写给理财小白的童话。它会用最温柔、最不吓人的方式告诉你——即使不在意钱，也需要懂一点钱。对隐士的你，这本书像一个温和的提醒：简朴是你选的，但简朴需要一点点基础的财务常识来保护。"
+      }
+    ],
+    
+    closing: `隐士这个身份本身就很美。
+
+在一个喧嚣的时代，你活得安静。在一个人人都在做加法的时代，你做的是减法。
+
+你的生活像一杯清水，没有味道，但刚刚好。
+
+愿你继续保持这份简朴的清醒。
+只是也请你为自己建一点点"看不见的保障"——
+让你的"不需要很多"，能一直安稳地延续下去。`
+  }
+};
+
+// ============ 温柔版人格数据（续）============
+Object.assign(PERSONALITIES_GENTLE, {
+  hunter: {
+    name: "战略猎手型",
+    nameEn: "The Calculated Hunter",
+    combo: "求稳者 × 冒险家",
+    tagline: "你的底色，是在确定性和可能性之间找到那条窄窄的路。",
+    
+    identity: `也许你是那种朋友看起来很冒险、其实每一步都算过的人。
+
+你会投资，但投之前会做详尽的调研。你会创业，但创之前会算好"最坏能撑多久"。你会做别人不敢做的事——但你敢，不是因为莽，是因为你算过了。
+
+你身上有一种奇妙的组合——既有对未来的敏锐嗅觉，又有对风险的本能警觉。这两种东西在很多人身上是矛盾的，在你身上却形成了一种精密的协作。你的冒险，从来带着安全绳。
+
+你或许很少冲动消费。每一笔大的开销，都是你反复权衡后的决定。但你也不是守着钱不动的人——你愿意让钱流动，只要流动的方向是你研究过、相信的。
+
+你对"被动收入""让钱生钱"这些概念大概不陌生。你可能已经在做定投、在研究投资、在为某个长期目标一步步靠近。你不急，但你在走。`,
+    
+    origin: `每个战略猎手的背后，都有属于自己的故事。
+
+或许你成长在一个重视"规划"的家庭，但你骨子里又不甘于只是"稳着"；或许你见过某个人因为精准的判断抓住了机会，这给你留下了深刻的印象；亦或是，你天生对"可能性"着迷，但你的谨慎又不允许你盲目跳进去。
+
+无论源头是哪一种，你找到了一种属于自己的方式——用研究降低风险，用耐心等待时机，用精算替代冲动。你的冒险，从来都是有准备的冒险。
+
+如果你是女性，你身上这种"敢冒险但不莽撞"的特质，或许还需要更多的空间被看见。在很多场合，女性的谨慎被视为"保守"，女性的冒险被视为"冲动"。你两者兼具，但常常不被理解。`,
+    
+    lights: [
+      { title: "你的判断力是你最大的财富", content: "在别人冲动的时候你在研究，在别人恐惧的时候你在计算。你出手的时候，通常是对的。这份\"对\"的背后，是无数小时的阅读、思考和等待。" },
+      { title: "你有一种稀有的耐心——等得起", content: "很多冒险家败在\"太急\"，很多求稳者困在\"不敢\"。你两样都不是。你知道什么时候该等，什么时候该出手。这种节奏感，大部分人一辈子都学不会。" },
+      { title: "你是身边人的\"定心丸\"", content: "因为你做过的决定很少是错的。朋友问你要不要投资某个项目，你的分析比很多专业人士都靠谱。" }
+    ],
+    
+    shadows: [
+      { title: "你或许偶尔会察觉——自己太依赖\"确定性\"了", content: "有些机会需要在信息不完整的情况下做决定。等你研究完，窗口可能已经关了。\"完美时机\"这件事，有时候本身就是一种幻觉。" },
+      { title: "你可能过度信任自己的分析能力", content: "觉得\"只要研究够深就能规避风险\"——但有些风险是不可预测的。对自己的判断力过度自信，偶尔也会翻车。" },
+      { title: "在日常生活里，你可能活得有点\"累\"", content: "因为你对每一笔钱的流向都想得很清楚。吃饭、旅行、买东西——这些别人不太在意的事情，你可能也会不自觉地\"做功课\"。" }
+    ],
+    
+    advice: [
+      { title: "允许自己偶尔\"不做功课\"就出手", content: "不是每一个决定都需要完美的信息。给自己一个\"快速决策\"的额度——在这个范围内，凭直觉做，不分析。看看结果是不是没有你想象的那么糟。" },
+      { title: "留一点空间给\"无法计算的东西\"", content: "有些最好的体验——一次意外的旅行、一段不在计划中的关系、一个完全没研究过的爱好——恰恰是在你放下计算的时候来的。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "何晶",
+        title: "淡马锡控股CEO",
+        story: "何晶掌管新加坡主权基金淡马锡控股，管理数千亿美元资产。她做投资的方式和大多数冒险家完全不同——每一笔投资前都要经过极其严格的研究和评估。她在2008年金融危机中的冷静决策让淡马锡安然度过风暴。她从不追逐热门，只投自己研究透了的领域。",
+        quote: "真正的好投资，从来不需要着急。"
+      },
+      {
+        name: "杨澜",
+        title: "媒体人",
+        story: "杨澜从主持人转型做媒体公司，每一步都走得极其谨慎。她后来创办阳光传媒、做高端访谈节目、投资女性相关事业，每一步都稳。不是因为她胆小，是因为她每一次出手前，都已经知道\"这一步可以站稳\"。",
+        quote: "我做任何决定前，都会把最坏的情况想一遍。如果最坏的情况我能承受，那就可以做。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《原则》",
+        author: "瑞·达利欧",
+        reason: "全球最大对冲基金创始人写的。对战略猎手的你，这本书最大的礼物是——教你怎么把\"谨慎\"变成一套可复用的决策系统。这样你就不用每件事都从头纠结，很多决定可以快速、准确地做出来。"
+      },
+      {
+        title: "《思考，快与慢》",
+        author: "丹尼尔·卡尼曼",
+        reason: "诺奖作品。这本书会帮你看见一件事——我们以为的\"理性决策\"，其实常常比想象的要感性。越想\"把所有事都想清楚\"，越容易掉进各种认知偏差。它不会让你变得冲动，它会让你对自己的\"过度思考\"多一份清醒。"
+      }
+    ],
+    
+    closing: `战略猎手这个身份，或许是所有金钱人格里最需要平衡感的一个。
+
+你活在"确定"和"可能"之间那条窄窄的线上。你一边计算着风险，一边渴望着回报。你的谨慎保护了你，你的勇敢成就了你。
+
+愿你继续做那个"带着安全绳冒险"的人。
+
+只是也请你偶尔记得——
+有些最好的风景，
+是在你放下望远镜、直接走进去的时候，才看见的。`
+  },
+  
+  cycler: {
+    name: "克制的享乐家",
+    nameEn: "The Cycler",
+    combo: "省钱王 → 消费狂",
+    tagline: "你的底色，是在\"忍耐\"和\"释放\"之间反复摆渡。",
+    
+    identity: `也许你是那种平时精打细算、某一刻突然爆发的人。
+
+连续几个月吃公司食堂、自己带午餐、对比三家超市的价格。然后某一天，你走进一家很贵的餐厅坐下来，打开菜单，对自己说"今天我值得"。
+
+你的消费曲线像潮汐——退潮的时候退得很深，涨潮的时候涨得很猛。平时你可以为了省一点钱花很多时间，但"释放"来临的时候，你花起钱来连自己都吃惊。
+
+你心里住着两个人。一个在记账，一个在购物车里加东西。大多数时候记账的那个占上风，但"释放"的那个永远在等待时机。
+
+爆发之后通常会有一段自责——"我怎么又这样了"。然后你开始新一轮的节制，直到下一次释放。这个循环你大概经历过很多次了。
+
+你和"精致主义者"不同。精致主义者的消费是稳定的、经过筛选的；你的消费更像是被压抑后的反弹——和"买什么"关系不大，和"忍够了"关系更大。`,
+    
+    origin: `每个克制的享乐家背后，都有属于自己的故事。
+
+或许你成长在一个崇尚节俭的家庭，从小被教育"钱要省着花"，但你内心深处对"好东西"、"好生活"有着真实的向往；或许你经历过某段经济紧张的日子，养成了节俭的本能，但你骨子里又不甘心一辈子只是"省"；亦或是，你天生对金钱有一种矛盾的感情——既怕失去它，又渴望用它换来快乐。
+
+无论源头是哪一种，你的内心形成了一种独特的张力——节制和欲望，各占半壁江山，谁也说服不了谁。
+
+如果你是女性，这份张力或许还和一些外部的期待有关——"要懂得持家"的声音和"你值得拥有更好的"的声音，同时在你耳边响着。你在两种声音之间来回走，有时候觉得累。`,
+    
+    lights: [
+      { title: "你有一种很多人缺少的诚实——你知道自己的欲望", content: "很多省钱型的人会否认自己想花钱，很多消费型的人会否认自己在乎钱。你两样都不否认。你承认自己想省，也承认自己想花。这份诚实是珍贵的。" },
+      { title: "你的\"释放\"时刻，常常是你最有生命力的时刻", content: "那顿好吃的饭、那次说走就走的旅行、那件终于舍得买的衣服——这些时刻你是发光的。你的快乐是真实的，浓烈的，值得被珍惜的。" },
+      { title: "你的节制能力其实很强", content: "能够长时间地控制消费，需要意志力。这份意志力在很多场合都是你的优势。" }
+    ],
+    
+    shadows: [
+      { title: "你或许会察觉——\"压抑—爆发—自责\"这个循环，本身就在消耗你", content: "每一次爆发后的自责会加重下一次的压抑，而更深的压抑又酝酿着更猛的爆发。这个循环如果不被打破，会越转越累。" },
+      { title: "\"释放\"的时刻，你的判断力可能会下降", content: "因为那一刻驱动你的不是\"我想要这个\"，而是\"我忍够了\"。在这种状态下买的东西，事后常常会觉得\"其实也没那么想要\"。" },
+      { title: "你可能对自己太严格了", content: "如果平时给自己留一点\"合理的享受空间\"，也许就不需要那么剧烈的\"释放\"。压力锅需要一个泄压阀，不能等到爆炸。" }
+    ],
+    
+    advice: [
+      { title: "与其\"忍三个月爆发一次\"，不如\"每个月给自己一个小小的奖励\"", content: "这个奖励不用大，一束花、一杯好咖啡、一顿想吃的饭。重要的是让\"享受\"变成日常的一部分，而不是压抑后的反弹。" },
+      { title: "爆发的时候，给自己一个缓冲", content: "如果你察觉到自己正在\"释放模式\"里，试着暂停一天再决定。不是阻止你花钱，是帮你区分\"我真的想要\"和\"我只是忍够了\"。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "弗朗西丝·梅斯",
+        title: "《托斯卡纳艳阳下》作者",
+        story: "梅斯是一位美国大学教授，生活节俭、规律。离婚后的某一天，她在意大利托斯卡纳看到一栋破旧的别墅，突然做了一个完全不像她的决定——用全部积蓄买下了它。那是她人生中最大的一次\"释放\"。之后她花了数年时间修缮这栋房子，并在这个过程中重新找到了自己。",
+        quote: "有时候你需要做一件不合理的事，才能重新变得完整。"
+      },
+      {
+        name: "李子柒",
+        title: "视频创作者",
+        story: "李子柒在爆红前经历了很多年的沉寂。她独自在四川山村里拍视频，收入微薄，生活极度节俭。她不社交，不营业，把所有的精力都攒着用在内容创作上。沉寂三年后她重新回归，一出手就再次震动全网。她的模式是典型的\"长期蓄力，一次释放\"。",
+        quote: "沉下心来做事，时间会给你答案。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《金钱心理学》",
+        author: "摩根·豪泽尔",
+        reason: "这本书会帮你看见一件事——你的\"节制—爆发\"循环背后，藏着什么样的情感需求。理解了这一点，你可以更温柔地对待自己的欲望，也可以更理性地管理自己的释放。"
+      },
+      {
+        title: "《自控力》",
+        author: "凯利·麦格尼格尔",
+        reason: "斯坦福大学的课程改编。这本书最有价值的部分，不是教你\"更自律\"，而是帮你理解——为什么越压抑越反弹。它会给你一套更可持续的自我管理方式，让\"享受\"和\"控制\"不再是敌人。"
+      }
+    ],
+    
+    closing: `克制的享乐家，或许是所有金钱人格里"最累"的一个。
+
+因为你一直在和自己谈判。一边的你说"省"，另一边的你说"花"。你在两者之间来回走了很久。
+
+但这份累也意味着——你比大多数人都更完整地体验着金钱带来的全部情绪。省下来的安心，花出去的快乐，你都有过。
+
+愿你找到一种方式，
+让节制和享受，不再是两个互相拉扯的对手，
+而是同一条河流里的两种水声——
+一种低沉，一种明亮，
+一起流向你想去的地方。`
+  },
+  
+  curator: {
+    name: "精致主义者",
+    nameEn: "The Curator",
+    combo: "消费狂 → 省钱王",
+    tagline: "你的底色，是\"少而精\"三个字。",
+    
+    identity: `也许你是那种衣柜里没几件衣服但每件都很好的人。
+
+你不频繁购物，但一旦出手，通常不会便宜。你不会因为"打折"就买一堆不需要的东西，但你会为一件真正打动你的东西付出高于预算的价格——并且不后悔。
+
+你对"便宜多"有一种本能的抵触。十件快时尚不如一件好设计。十顿普通饭不如一顿真正好吃的。你的消费哲学可以用四个字概括——宁缺毋滥。
+
+你是消费狂和省钱王的组合，但和"克制的享乐家"不同。克制的享乐家是"忍够了再爆发"，你是"平时就只挑好的，但不多买"。你的消费曲线很平稳，没有剧烈的起伏——你不需要通过"释放"来满足自己，因为你的每一次消费本身就是精选过的满足。
+
+你大概是那个朋友请你推荐东西时，会给出非常具体答案的人——品牌、款式、在哪里买、为什么这个好。你的推荐很少出错。
+
+你花钱的方式更像是策展——不是把所有东西都搬进来，而是精心挑选，每一件都有它在那里的理由。`,
+    
+    origin: `每个精致主义者的背后，都有属于自己的故事。
+
+或许你从小就对"美"有一种天然的敏感——不是浮华的美，而是那种"对的"感觉；或许你经历过"买了很多却不满足"的阶段，后来学会了"少买但买好"；亦或是，你成长在一个对品质有追求的环境里，耳濡目染地形成了自己的审美标准。
+
+无论源头是哪一种，你找到了一种属于自己的平衡——在消费的冲动和节俭的本能之间，你选择了"精选"这条路。你的省钱王一面帮你过滤掉了不必要的东西，你的消费狂一面让你不会活得太贫瘠。
+
+如果你是女性，你身上的这种"精致但不挥霍"的特质，或许常常被误读——有人觉得你"讲究"，有人觉得你"装"。你大概早就不在意这些声音了。你知道自己要什么，这就够了。`,
+    
+    lights: [
+      { title: "你有一种非常成熟的消费美学", content: "你的每一笔消费都经过了审美和价值的双重筛选。你的家里、你的穿着、你的生活方式，都有一种经过挑选的和谐。这种和谐不是钱堆出来的，是眼光养出来的。" },
+      { title: "你很少冲动消费，也很少后悔消费", content: "因为你买的每一样东西都是你真正想要的、研究过的、确认过的。这份\"买了就不后悔\"的确定感，很多人终其一生都做不到。" },
+      { title: "你是省钱王和消费狂之间最优雅的平衡", content: "你不会为了省钱而委屈自己，也不会为了享受而透支未来。你找到了那条\"刚好\"的线。" }
+    ],
+    
+    shadows: [
+      { title: "你或许偶尔会陷入\"永远在挑、永远没选好\"的状态", content: "因为标准太高，你可能花很长时间研究一件东西，最后还是没下手——要么觉得不够完美，要么觉得还有更好的。这份追求完美，有时候会让你错过\"够好\"的东西。" },
+      { title: "你的\"少而精\"有时候会让身边的人有压力", content: "伴侣、朋友可能会觉得你的标准太高——不只是对物品，也包括对生活的其他方面。你的挑剔是有道理的，但在关系里，偶尔接受一些\"不那么精致\"的时刻，也是一种放松。" },
+      { title: "\"精致\"也是有成本的", content: "虽然你买得少，但每一件都贵。累积起来，你的消费未必比买得多的人少。值得偶尔审视一下——你追求的是\"真正的品质\"，还是在某些时候，\"贵\"本身成为了一种安全感。" }
+    ],
+    
+    advice: [
+      { title: "偶尔允许自己\"将就\"一次", content: "买一件不那么完美但够用的东西。去一家不那么精致但朋友推荐的餐厅。接受一次\"差不多就好\"的体验。你可能会发现，\"不完美\"里也有一种轻松的快乐。" },
+      { title: "留意\"精致\"背后的真实需求", content: "有时候我们追求品质，是因为我们真的懂得欣赏。有时候我们追求品质，是因为我们需要通过\"拥有好东西\"来确认自己的价值。两者之间的区别，值得你偶尔停下来看一看。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "川久保玲",
+        title: "Comme des Garçons 创始人",
+        story: "川久保玲几乎从不接受采访，极少公开露面。她的个人生活极其简朴——永远穿黑色，住朴素的房子。但她在设计上的投入令人惊叹，每一季的作品都像一场颠覆。她的店铺里从来不打折，因为她觉得自己的设计不需要用降价来证明价值。",
+        quote: "我对大多数东西都不感兴趣，但我感兴趣的那些，我会用尽全力。"
+      },
+      {
+        name: "安娜·温图尔",
+        title: "Vogue 全球编辑总监",
+        story: "温图尔以极度挑剔著称——她能在三秒内判断一件衣服值不值得出现在Vogue上。她的办公室极简，生活作息严格到分钟。她不会为了便宜买任何东西，也不会因为贵就买。她的标准只有一条——够不够好。几十年来，她用这个标准定义了全球时尚的审美方向。",
+        quote: "永远做你认为对的事，无论别人怎么看。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《断舍离》",
+        author: "山下英子",
+        reason: "这本书听起来像\"劝你别买东西\"的，其实不是。它真正的核心是帮你看清什么东西配得上住在你的生活里。对精致主义者来说，这本书像一面更清晰的镜子，让你的\"精选\"变得更自觉。"
+      },
+      {
+        title: "《侘寂：不完美的美》",
+        author: "莱纳德·科伦",
+        reason: "一本关于日本美学\"侘寂\"的小书。侘寂的核心是——美在不完美之中。对精致主义者来说，这本书是一个温柔的提醒：有时候，一个有缺口的碗比一个完美的碗更美。允许生活里有一点\"不完美\"，你反而会更自在。"
+      }
+    ],
+    
+    closing: `精致主义者，或许是所有金钱人格里最优雅的一个。
+
+你不追逐潮流，不被折扣绑架，不因为"便宜"而妥协。你知道自己要什么，你等得起，你挑得准。
+
+你的生活像一个小小的展厅——不拥挤，不浮华，每一件东西都有它在那里的理由。
+
+愿你继续做那个"宁缺毋滥"的人。
+只是也请你偶尔记得——
+有些最动人的瞬间，
+恰恰发生在"不那么讲究"的时候。`
+  },
+  
+  underdog: {
+    name: "暗黑赌徒",
+    nameEn: "The Underdog",
+    combo: "省钱王 × 冒险家",
+    tagline: "你的底色，是在漫长的忍耐中等待一个改变一切的瞬间。",
+    
+    identity: `也许你是那种平时极度节俭、心里却藏着一场大赌的人。
+
+你不是真的想过一辈子节俭的日子。你清楚自己在做什么——你在攒弹药。攒到某一天你觉得机会来了，你会把积蓄的大部分押上去。可能是一次投资，可能是一次创业，可能是一个你觉得"再不做就来不及了"的决定。
+
+你平时的生活可能和一个普通的省钱王看起来没什么区别——比价、节省、不乱花。但你和省钱王最大的不同是——省钱王存钱是为了安全感，你存钱是为了子弹。
+
+你相信"人生就那么一两次机会"。你在为那一次做准备。
+
+你身边的人大概不知道你心里藏着什么。他们觉得你只是一个"节俭的人"。直到某一天你突然做出一个让所有人大吃一惊的决定——那一刻他们才会意识到，你准备了很久。
+
+和"战略猎手"不同。战略猎手的冒险是持续的、日常的、精算过的。你的冒险更像是地震——平时一切平静，但你知道能量在地底下积蓄着，等待那一次释放。`,
+    
+    origin: `每个暗黑赌徒的背后，都有属于自己的故事。
+
+或许你成长在一个"靠工资翻不了身"的环境里，很早就意识到——按部就班走下去，你永远到不了你想去的地方；或许你经历过某种"被困住"的感觉，那种感觉让你暗暗发誓总有一天要打破它；亦或是，你见过某个人通过一次精准的押注改变了命运，那个画面在你心里种下了种子。
+
+无论源头是哪一种，你形成了一种独特的策略——用时间换筹码，用忍耐换机会。你知道大多数人做不到这种程度的自律，但你可以。
+
+如果你是女性，这份"暗暗积蓄力量"的姿态，或许还有更深的一层——在一个不总是对女性的野心友好的世界里，你学会了不声张。你不说你要做什么，你只是默默准备着。直到有一天，你出手了。`,
+    
+    lights: [
+      { title: "你的自律是惊人的", content: "能够长年保持极度的节制，同时心里怀着一个不灭的目标——这种能力大部分人没有。你的耐心是你最大的武器。" },
+      { title: "你有一种\"静水流深\"的力量", content: "表面上你和每个人一样过着普通的生活。但你内心有一团火，一直在烧。这团火让你和那些\"真正安于现状\"的人不同——你的节俭不是认命，是蓄力。" },
+      { title: "当你出手的时候，你是认真的", content: "你不会轻易下注。但一旦你决定了，你会全力以赴。这种\"要么不做，要么做到底\"的气质，是很多人羡慕的。" }
+    ],
+    
+    shadows: [
+      { title: "你或许需要留意一件事——你等待的\"那个机会\"，可能永远不会以你想象的方式出现", content: "有些人等了十年，机会来了，一把翻身。有些人等了十年，机会没来——或者来了但判断错了。\"攒了所有弹药押在一次上\"的策略，风险极高。" },
+      { title: "你用十年节俭攒下的东西，有可能因为一次错误的判断而失去", content: "这件事你大概想过，但你可能低估了它真的发生时的冲击。失去金钱是一回事，失去\"十年的忍耐\"是另一回事。后者的心理代价要大得多。" },
+      { title: "在漫长的等待中，你或许忽略了\"现在\"", content: "你的节俭是有目的的——为了未来的某一天。但在那一天到来之前的每一天，也是你的人生。十年后回看，你可能会希望当年的自己不只是在\"准备\"，也在\"生活\"。" }
+    ],
+    
+    advice: [
+      { title: "想一想\"如果那个机会永远不来，我的人生还值得吗\"", content: "如果答案是\"不值得\"——也许你对那个机会的期待，已经变成了一种执念。如果答案是\"也还行\"——那你就是自由的，无论机会来不来。" },
+      { title: "当机会真的来了，给自己设一个\"不能超过\"的线", content: "不是让你放弃冒险，是帮你在押注的同时保住底线。投出去的钱，应该是\"输了也不影响基本生活\"的部分。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "萧红",
+        title: "作家",
+        story: "萧红一生颠沛流离，几乎始终处于贫困中。她逃离家庭，在哈尔滨、上海、东京、香港之间辗转。她把所有微薄的收入都押在了一件事上——写作。在最穷困的时候，她写出了《生死场》和《呼兰河传》。她是在完全没有退路的情况下，把全部的自己押上去的。",
+        quote: "我一生最大的痛苦和不幸，都是因为我是一个女人。"
+      },
+      {
+        name: "J.K.罗琳",
+        title: "作家",
+        story: "罗琳在写《哈利·波特》的时候，是一个单亲妈妈，靠救济金生活。她在爱丁堡的咖啡馆里写作，因为咖啡馆有暖气，她的公寓没有。她把几年的贫困和忍耐，全部押在了一本书上。第一本《哈利·波特》被十二家出版社拒稿，最后一家小出版社接受了它。",
+        quote: "最低谷成为了我重建人生的坚实地基。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《反脆弱》",
+        author: "纳西姆·尼古拉斯·塔勒布",
+        reason: "塔勒布的\"杠铃策略\"几乎是为暗黑赌徒设计的——90%极度安全 + 10%极度冒险。这本书会帮你把\"孤注一掷\"变成\"有底线的冒险\"，让你的赌局更可持续。"
+      },
+      {
+        title: "《从0到1》",
+        author: "彼得·蒂尔",
+        reason: "PayPal创始人写的。这本书会帮你判断——什么样的机会值得你押上十年的积蓄，什么样的\"机会\"其实只是噪音。对暗黑赌徒来说，最重要的能力不是\"敢赌\"，而是\"赌对\"。"
+      }
+    ],
+    
+    closing: `暗黑赌徒，或许是所有金钱人格里最孤独的一个。
+
+你的忍耐没人看见，你的野心没人知道。你在人群中安静地站着，但你的内心从来没有安静过。
+
+愿你等到你的那一刻。
+
+但也请你记得——
+等待的日子里，
+也值得偶尔对自己好一点。
+泡一杯好茶，吃一顿好饭，看一场好电影。
+不是为了"那一天"，只是为了今天。
+
+因为今天，也是你人生里唯一的一天。`
+  },
+  
+  planner: {
+    name: "体验规划师",
+    nameEn: "The Planner",
+    combo: "求稳者 × 消费狂",
+    tagline: "你的底色，是在\"可控范围\"内，把生活过得尽可能精彩。",
+    
+    identity: `也许你是那种下个月要度假、上个月就开始做攻略的人。
+
+你愿意为"好体验"花钱——旅行、演出、好餐厅、一个值得纪念的日子。但你的慷慨有一个前提——这笔钱是在计划中的。
+
+突然说"今晚去吃人均很高的餐厅"？你心里会紧一下。但如果提前一周说"这个周六我们去吃一顿好的"？你会愉快地答应，并且提前查好餐厅、订好位置、甚至研究好菜单。
+
+对你来说，期待本身就是体验的一部分。从规划的那一刻起，快乐就已经开始了。
+
+你和"燃烧者"不同。燃烧者的快乐是即兴的、当下的——看到一张特价机票就订了。你的快乐是预谋的、精心设计的——你提前三个月就知道那趟旅行会去哪些地方、住哪家酒店、每天的行程是什么。
+
+你和"磐石型"也不同。磐石型的节制是全面的，你的节制是有方向的——你愿意在某些体验上慷慨，前提是其他地方省下来了足够的空间。
+
+你的消费哲学可以概括为——先规划，再享受。规划是安全感，享受是生命力。你需要两者都在。`,
+    
+    origin: `每个体验规划师的背后，都有属于自己的故事。
+
+或许你成长在一个"既重视规划又不至于太压抑"的家庭——父母会带你去旅行，但一定是做好了预算的旅行；或许你天生对"仪式感"有一种需求——生日、纪念日、节假日，这些日子对你来说不只是日历上的标记，是值得被认真对待的瞬间；亦或是，你经历过"没有计划就失控"的时刻，从那以后你学会了用规划来保护自己的快乐。
+
+无论源头是哪一种，你找到了一种很精妙的平衡——在安全感和体验感之间，你两个都要。你的求稳者一面帮你管住底线，你的消费狂一面帮你不至于活得太枯燥。
+
+如果你是女性，你身上这种"能规划又能享受"的特质，其实是很多人羡慕的。`,
+    
+    lights: [
+      { title: "你是身边人里\"和你出门最省心\"的那个人", content: "因为你把所有事情都安排好了。酒店、交通、行程、餐厅——跟着你走就对了。你的规划能力是一种礼物，不只给自己，也给身边的人。" },
+      { title: "你能够在\"安全\"和\"快乐\"之间找到平衡", content: "很多人要么只会省（活得无趣），要么只会花（活得焦虑）。你两样都会。你的预算里有\"节制\"的部分，也有\"挥霍\"的部分——而且两者比例拿捏得刚好。" },
+      { title: "你的仪式感是真实的", content: "你为一个生日、一次纪念日、一段旅行投入的心思，是真的用心。这些被你精心规划过的时刻，会成为你和爱的人之间长久的记忆。" }
+    ],
+    
+    shadows: [
+      { title: "你或许偶尔会察觉——自己很难享受\"临时起意\"的快乐", content: "如果一切都要在计划中才能放松地花钱，那么那些意料之外的美好——一家偶然走进的小店、一场没有预约的聚会、一段即兴的冒险——你可能会因为\"没在计划中\"而无法全身心地投入。" },
+      { title: "你的规划有时候会让身边的人觉得\"太有计划了\"", content: "伴侣、朋友可能偶尔想要一些\"随性\"的时刻。你的严密安排虽然让人省心，但也可能让人觉得\"没有惊喜的空间\"。" },
+      { title: "你可能把\"规划\"本身当成了控制焦虑的方式", content: "规划让你安心——因为一切都在掌控中。但如果\"不在计划中\"这件事本身会让你焦虑，那么规划就不再是工具，而是枷锁了。" }
+    ],
+    
+    advice: [
+      { title: "每个月留一天做\"没有计划的一天\"", content: "不查攻略，不订餐厅，不安排行程。醒来以后看心情决定去哪。你可能会发现，\"不知道接下来会发生什么\"这件事本身，也有一种令人兴奋的美。" },
+      { title: "在你的预算里加一栏\"意外基金\"", content: "不是应急金，是专门用于\"计划外的快乐\"的钱。朋友临时约饭、路过一家看起来不错的店、突然想看一场电影——这些钱从\"意外基金\"里出，你就不用每次都和\"计划\"谈判了。" }
+    ],
+    
+    celebrities: [
+      {
+        name: "玛莎·斯图尔特",
+        title: "生活方式品牌创始人",
+        story: "斯图尔特是全美国最擅长\"把日常生活变成精心策划的美好体验\"的人。她的食谱、家居建议、节日策划方案影响了几代美国家庭。她的每一场晚宴、每一个节日装饰、每一份食谱都经过了极其细致的规划。但最终呈现出来的效果是——每个参与的人都觉得\"好温暖\"、\"好有心\"。",
+        quote: "好生活是可以被设计的。"
+      },
+      {
+        name: "伊丽莎白·大卫",
+        title: "英国美食作家",
+        story: "大卫在战后物资匮乏的英国，写出了关于地中海美食的书，彻底改变了英国人的饮食方式。她对体验的追求是有计划的——她会提前研究一个地方最好的食材、最地道的做法，然后按照自己的节奏一一品尝。她把\"吃\"变成了一种精心策划的艺术，每一顿饭都是预谋已久的美好。",
+        quote: "好的食物需要时间、耐心和精心的准备，匆忙永远做不出好东西。"
+      }
+    ],
+    
+    books: [
+      {
+        title: "《金钱心理学》",
+        author: "摩根·豪泽尔",
+        reason: "这本书会帮你看见一件事——\"为什么我需要一切都在计划中才能安心花钱\"。理解了这个问题，你的\"计划\"会变得更灵活，你的\"享受\"也会更自在。"
+      },
+      {
+        title: "《清单革命》",
+        author: "阿图·葛文德",
+        reason: "一本关于\"如何用最简单的工具管理最复杂的事情\"的书。对体验规划师来说，这本书会帮你优化你的规划系统——让它更高效、更轻松，留出更多空间给\"计划外的惊喜\"。"
+      }
+    ],
+    
+    closing: `体验规划师，或许是所有金钱人格里"最会生活"的一个。
+
+你既不会为了省钱而委屈自己，也不会为了享受而焦虑未来。你找到了一种精妙的平衡——在安全感和快乐之间，你架了一座桥。
+
+你精心规划的每一次旅行、每一顿饭、每一个纪念日，都会成为你和爱的人之间闪闪发光的记忆。
+
+愿你继续做那个"把快乐安排得明明白白"的人。
+只是也请你偶尔记得——
+有些最好的回忆，
+恰恰发生在计划之外。
+
+一次迷路，一场大雨，一个临时改变的目的地——
+这些"意外"，有时候会成为你最珍贵的故事。`
+  }
+});
+
+// ============ 搞笑版人格数据 ============
+const PERSONALITIES_FUN = {
+  fortress: {
+    name: "存款焦虑症晚期患者",
+    tagline: "攒了一辈子钱就是为了以防万一，结果万一都没发生",
+    identity: `你是那种工资到账三秒内就完成"划走一部分到存款"的人。不划你不踏实，划了你还是不踏实，因为你觉得划得不够多。
+
+你手机里装着五个理财App，三个记账App，两个保险App。朋友问去哪吃饭，你能在0.3秒内筛出"人均最划算×距离最近×评分最高"那家。你做题都没这么快。
+
+你最大的爱好是算账：算下个月的，算明年的，算退休的，算你还没出生的孙子的。`,
+    dialogs: [
+      { who: "妈", what: "这孩子懂事" },
+      { who: "朋友", what: "和你吃饭压力好大" },
+      { who: "伴侣", what: "我买个东西要解释二十分钟" },
+      { who: "你自己", what: "我不焦虑，我在为未来可能发生的一切做准备" }
+    ],
+    scenes: [
+      "外卖满减差2块没凑上：坐立难安",
+      "看到折扣：心动",
+      "看到折扣写着\"限时\"：警觉（这是骗局）",
+      "被夸\"会过日子\"：嘴上谦虚，心里咧嘴笑三天",
+      "存款多了1000：比中彩票还开心"
+    ]
+  },
+  
+  blaze: {
+    name: "没钱但不care人格",
+    tagline: "月月光却过得最开心",
+    identity: `你的银行账户余额是薛定谔式的——你不知道它有多少，你也不想知道。知道了就不开心了，不开心了就要花钱，花钱了就更没钱了，所以不看才是最好的理财。
+
+你花钱逻辑清晰：想花就花，想花就花，想花就花。
+
+朋友生日你送的礼物比房租还贵。失恋一晚喝掉半个月伙食费的酒。加班累了打车回家，司机以为你家在郊区，其实你家就在前面第二个路口。`,
+    dialogs: [
+      { who: "妈", what: "什么时候能学会过日子" },
+      { who: "朋友", what: "和你玩真开心（你总请客）" },
+      { who: "伴侣", what: "我爱你的鲜活也担心你的未来" },
+      { who: "你自己", what: "人生苦短，我乐意" }
+    ],
+    scenes: [
+      "信用卡账单到了：不看，删除，消失",
+      "朋友说想去旅行：五分钟后机票已订",
+      "看到限量款：走不动道",
+      "看到打折：反而不想买了（没那味儿了）",
+      "月底最后一天：泡面配鱼子酱（上半月剩的）"
+    ]
+  },
+  
+  dandelion: {
+    name: "散财菩萨",
+    tagline: "工资到账，钱就不是我的了，是朋友们的",
+    identity: `你是朋友圈里那个最慷慨的人。
+
+逛街看到一个小东西会想"这好像是XX会喜欢的"，然后买下来。收礼物的朋友早忘了自己提过，但你记得。
+
+和朋友吃饭你总抢着买单。几百块账单抵不过"请到了喜欢的人吃饭"的满足感。
+
+你给朋友、家人、同事买过无数东西。给自己买东西的时候却会犹豫：真的需要吗？`,
+    dialogs: [
+      { who: "朋友", what: "和你做朋友真幸福" },
+      { who: "家人", what: "自己多花点好不好" },
+      { who: "收礼人", what: "怎么又送" },
+      { who: "你自己", what: "让我喜欢的人开心，这个钱花得值" }
+    ],
+    scenes: [
+      "看到好东西：第一反应是谁会喜欢",
+      "聚餐买单：抢得比命还快",
+      "自己想买点东西：犹豫半个月",
+      "朋友过生日：记得比她自己还清楚",
+      "查账户余额：咦怎么又没了"
+    ]
+  },
+  
+  nomad: {
+    name: "今天在这里明天不知道",
+    tagline: "存款永远凑不够首付但护照盖满章",
+    identity: `你是同龄人开始买房结婚时，心里默默想"真的需要这些吗"的人。
+
+一年换两次城市，三年换一份工作。不是待不住，是总有更想去看的地方、更想试的事。
+
+你存款永远是个模糊的概念，但你知道机票钱一定有。房子？租的就行。家具？能搬的就行。对象？走得动路的就行。`,
+    dialogs: [
+      { who: "妈", what: "什么时候安定下来" },
+      { who: "朋友", what: "又要走？" },
+      { who: "房东", what: "押金还你" },
+      { who: "你自己", what: "这里待够了，下一站" }
+    ],
+    scenes: [
+      "刷到特价机票：一小时内决定去",
+      "朋友买房：转账送了祝福",
+      "体检医生问常住地址：支支吾吾",
+      "搬家：熟练工",
+      "有人说\"你该安定下来\"：礼貌微笑，内心：哈？"
+    ]
+  },
+  
+  hermit: {
+    name: "消费主义免疫体质",
+    tagline: "双十一跟我没关系",
+    identity: `你是那种衣柜里来来回回就那几件衣服，但每件都穿得很舒服的人。
+
+不是买不起新的，是真的不需要。身边人换手机、换包、换家具的时候，你默默用着五年前那个。能用就不换，坏了再说。
+
+双十一、节日促销、限时折扣——这些词对你几乎没吸引力。不是在"抗拒"，是从来不觉得和自己有关。`,
+    dialogs: [
+      { who: "朋友", what: "给你带礼物都不知道带啥" },
+      { who: "妈", what: "女孩子要对自己好一点" },
+      { who: "广告商", what: "她怎么回事" },
+      { who: "你自己", what: "我已经够了" }
+    ],
+    scenes: [
+      "双十一：照常睡觉",
+      "朋友推荐新品：谢谢不用",
+      "手机用了五年：怎么了",
+      "被问\"这个多少钱买的\"：呃五年前的",
+      "搬家：收拾十分钟"
+    ]
+  },
+  
+  hunter: {
+    name: "带计算器的冒险家",
+    tagline: "赌就赌，但一定赌赢",
+    identity: `你是那种朋友看你很冒险、其实你每一步都算过的人。
+
+你会投资，但投之前会做详尽的调研。你会创业，但创之前会算好"最坏撑几年"。你会做别人不敢做的事，但你敢不是因为莽，是因为算过了。
+
+你看起来像冒险家，其实骨子里是个精算师。你的座右铭是——风险是别人不知道自己在做什么。`,
+    dialogs: [
+      { who: "朋友", what: "你怎么老是能赢" },
+      { who: "家人", what: "这孩子稳" },
+      { who: "竞争对手", what: "她又看出来了" },
+      { who: "你自己", what: "我不是运气好，我是做了功课" }
+    ],
+    scenes: [
+      "听到投资机会：先问数据",
+      "别人冲动投资：默默观察",
+      "自己出手：一击即中",
+      "被问运气好：我不信运气",
+      "算一个项目：Excel表格十几个"
+    ]
+  },
+  
+  cycler: {
+    name: "省了一年爆发一晚",
+    tagline: "平时吃土双十一血拼",
+    identity: `你是那种平时精打细算、某一刻突然爆发的人。
+
+连续吃了三个月公司食堂，某天突然订了人均巨贵的餐厅——"我值得的"。
+为了省几块钱搭公交，某次突然打车去机场——"今天累了"。
+一整年没买新衣服，双十一一口气买了八件——"这是我应得的"。
+
+你的消费曲线像心电图，平的时候真平，尖的时候真尖。
+
+你心里住着一个会计和一个购物狂，她俩互相看不顺眼但共用一个钱包。`,
+    dialogs: [
+      { who: "朋友", what: "你到底是抠还是大方" },
+      { who: "伴侣", what: "你上次不是说要省钱吗" },
+      { who: "你上午", what: "我要存钱" },
+      { who: "你晚上", what: "下单" },
+      { who: "你凌晨", what: "我为什么要买这个" }
+    ],
+    scenes: [
+      "前27天：自带午餐",
+      "第28天：米其林",
+      "冲动消费后：深呼吸，打开记账App",
+      "记完账：关掉App，眼不见为净",
+      "被问\"你怎么又买了\"：我忍很久了你知不知道"
+    ]
+  },
+  
+  curator: {
+    name: "少即是多重度信徒",
+    tagline: "衣柜空旷且昂贵",
+    identity: `你是那种衣柜里没几件衣服但每件都贵得让朋友咋舌的人。
+
+十件快时尚？不如一件设计师。十顿普通饭？不如一顿真正好的。你的消费哲学四个字——宁缺毋滥。
+
+你逛街的方式和别人不一样。别人逛街是"看看有什么想买的"，你逛街是"看看有什么配得上我的"。大多数时候答案是没有。
+
+你的购物车长年空着。但你一出手就是精准打击——品牌、款式、颜色、材质，全部研究完毕，一击即中，绝不退货。`,
+    dialogs: [
+      { who: "朋友", what: "你东西少但都好看" },
+      { who: "妈", what: "这么贵买它干嘛" },
+      { who: "同事", what: "你怎么这么会挑" },
+      { who: "购物软件", what: "此用户打开频率高但转化率极低" },
+      { who: "你自己", what: "宁缺毋滥" }
+    ],
+    scenes: [
+      "逛街两小时：什么都没买",
+      "终于出手：一件顶别人五件",
+      "被问\"贵吗\"：它值这个价",
+      "看到朋友买了便宜替代品：微笑但内心复杂",
+      "收到打折推送：如果需要打折才能买，那它不配"
+    ]
+  },
+  
+  underdog: {
+    name: "存十年赌一把人格",
+    tagline: "别人以为她抠，其实她在等一个改变命运的机会",
+    identity: `你是那种平时抠得不行、心里却藏着一场大赌的人。
+
+你不是真的想抠一辈子。你是在攒弹药。
+
+你看别人投资赚了，心里不急。你看别人创业成了，心里不慌。因为你知道——你的时机还没到。到了你就出手。
+
+你平时的伪装非常好。同事们觉得你就是一个朴素低调的人。直到某一天你突然辞职了/把积蓄投进了一个项目/做了一个让所有人目瞪口呆的决定——
+
+大家：？？？你哪来的钱？？？
+你：攒的。`,
+    dialogs: [
+      { who: "平时的同事", what: "她真省啊" },
+      { who: "看到你出手那天的同事", what: "她疯了吧" },
+      { who: "妈", what: "你把钱都弄哪去了" },
+      { who: "你自己", what: "我等这一天很久了" }
+    ],
+    scenes: [
+      "日常：极度节俭，和仓鼠王几乎分不清",
+      "内心：密切关注某个赛道/行业/机会",
+      "看到机会但时机不对：再等等",
+      "时机到了：梭哈",
+      "被问\"你怎么敢\"：因为我准备了你看不见的时间"
+    ]
+  },
+  
+  planner: {
+    name: "把快乐做成Excel的人",
+    tagline: "连浪漫都要提前三个月计划",
+    identity: `你是那种下个月要度假、上个月就开始做攻略的人。
+
+你愿意花钱享受生活。但有一个条件——让我先做个表。
+
+突然说"今晚去吃大餐"？不行，我没有心理准备。
+提前三天说"周六去吃大餐"？好的没问题我开始期待。
+
+你的旅行攻略精确到每一小时。你的生日计划提前两个月启动。你纪念日的餐厅是三个月前订的。
+
+你不是不浪漫。你是有预谋的浪漫。`,
+    dialogs: [
+      { who: "朋友", what: "和你出门好省心" },
+      { who: "伴侣", what: "你有没有临时起意过" },
+      { who: "你做完攻略那刻", what: "比旅行本身还爽" },
+      { who: "到了发现和攻略不一样", what: "轻微崩溃" },
+      { who: "被说太有计划了", what: "那你是想出乱子吗" }
+    ],
+    scenes: [
+      "旅行前：Excel十几页",
+      "朋友临时约饭：我查一下日历",
+      "有人说\"走，现在就去\"：我需要十分钟做个plan",
+      "纪念日：三个月前就订好了餐厅",
+      "计划被打乱：需要五分钟恢复情绪"
+    ]
+  }
+};
+
+// ============ 内在冲突值解读 ============
+const CONFLICT_INTERPRETATIONS = {
+  low: {
+    level: "和谐共处",
+    text: `你的两种金钱倾向比较和谐，像是同一个声音的高音和低音。在大多数时候，你做决定的速度不慢，做完之后也很少后悔。
+
+这份和谐让你在金钱上活得比较省心。值得留意的是——和谐有时候也意味着盲区。你可能对某些问题有一致的忽视。偶尔听听和你金钱观完全不同的人的想法，会让你的视野更完整。`
+  },
+  medium: {
+    level: "温和拉扯",
+    text: `你的心里住着两种不太一样的声音。大多数时候它们相安无事，但在某些特定的时刻——要做一个大决定、面对一笔大开销、或者情绪起伏比较大的时候——它们会开始拉扯。
+
+这份拉扯不是缺陷。它意味着你天然拥有一种"自我校正"的能力——一种倾向走得太远时，另一种会把你拉回来。很多时候，你最终做出的决定，恰恰是因为经历了这份拉扯，才比较周全。`
+  },
+  high: {
+    level: "剧烈摆渡",
+    text: `你的两种金钱倾向常常在打架。
+
+也许你经历过这样的时刻——省了很久突然大笔花钱，花完之后又深深自责；或者明明想冒险尝试，最后却被自己的谨慎拦住；或者别人觉得你有时抠、有时大方，你自己也说不清自己到底是哪一种。
+
+这份冲突会让你在做决定时比别人更纠结，也会在做完决定后更容易自我怀疑。但请记住——冲突的另一面是丰富。你比大多数人都更完整地体验着金钱带来的情绪光谱。那些纠结的时刻，恰恰是你在认真对待自己的生活。
+
+一个小建议：与其试图消灭其中一种声音，不如给两种声音各留一个空间。比如每月设一笔"不用解释"的钱给感性的那一面，同时保持理性那一面的储蓄习惯。让两种倾向各得其所，冲突就会慢慢变成平衡。`
+  }
+};
+
+// ============ 状态管理 ============
+let currentQuestion = 0;
+let answers = [];
+let currentVersion = 'gentle'; // gentle | fun
+
+// ============ 页面切换 ============
+function showPage(id) {
+  ['coverPage', 'testPage', 'resultPage'].forEach(pid => {
+    const el = document.getElementById(pid);
+    if (pid === id) {
+      el.style.display = pid === 'coverPage' ? 'flex' : 'block';
+      el.classList.add('active');
+    } else {
+      el.style.display = 'none';
+      el.classList.remove('active');
+    }
+  });
+  window.scrollTo(0, 0);
+}
+
+function startTest() {
+  showPage('testPage');
+  loadQuestion(0);
+}
+
+// ============ 题目加载 ============
+function loadQuestion(index) {
+  const q = QUESTIONS[index];
+  document.getElementById('categoryLabel').textContent = q.category;
+  document.getElementById('questionText').textContent = q.text;
+  document.getElementById('currentQ').textContent = index + 1;
+  document.getElementById('progressFill').style.width = ((index + 1) / QUESTIONS.length * 100) + '%';
+
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+
+  const letters = ['A', 'B', 'C', 'D', 'E'];
+  q.options.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.className = 'option' + (answers[index] === i ? ' selected' : '');
+    div.setAttribute('data-index', i);
+    div.innerHTML = '<span class="option-letter">' + letters[i] + '</span><span>' + opt.text + '</span>';
+    div.addEventListener('click', function() { selectOption(i); });
+    container.appendChild(div);
+  });
+
+  document.getElementById('prevBtn').disabled = index === 0;
+  updateNextBtn();
+}
+
+function selectOption(i) {
+  answers[currentQuestion] = i;
+  const options = document.getElementById('optionsContainer').children;
+  for (let j = 0; j < options.length; j++) {
+    if (j === i) {
+      options[j].classList.add('selected');
+    } else {
+      options[j].classList.remove('selected');
+    }
+  }
+  updateNextBtn();
+}
+
+function updateNextBtn() {
+  const btn = document.getElementById('nextBtn');
+  const answered = answers[currentQuestion] !== undefined;
+  btn.disabled = !answered;
+  btn.textContent = currentQuestion === QUESTIONS.length - 1 ? '查 看 结 果 →' : '下 一 题 →';
+}
+
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    loadQuestion(currentQuestion);
+    window.scrollTo(0, 0);
+  }
+}
+
+function nextQuestion() {
+  if (answers[currentQuestion] === undefined) return;
+  if (currentQuestion < QUESTIONS.length - 1) {
+    currentQuestion++;
+    loadQuestion(currentQuestion);
+    window.scrollTo(0, 0);
+  } else {
+    showResult();
+  }
+}
+
+// ============ 计分 ============
+function calculateResult() {
+  const scores = { saver: 0, spender: 0, risktaker: 0, security: 0, flyer: 0 };
+  let conflictExtra = 0;
+
+  answers.forEach((ansIdx, qIdx) => {
+    const opt = QUESTIONS[qIdx].options[ansIdx];
+    if (opt.scores) {
+      for (const [type, val] of Object.entries(opt.scores)) {
+        scores[type] += val;
+      }
+    }
+    if (opt.conflict !== undefined) {
+      conflictExtra += opt.conflict;
+    }
+  });
+
+  // 排序找主次人格
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const primary = sorted[0];
+  const secondary = sorted[1];
+  
+  // 映射到10种人格
+  const mapKey = primary[0] + '-' + secondary[0];
+  let personalityKey = PERSONALITY_MAP[mapKey];
+  
+  // 兜底：如果没有映射，用最接近的
+  if (!personalityKey) {
+    // 尝试反向
+    const reverseKey = secondary[0] + '-' + primary[0];
+    personalityKey = PERSONALITY_MAP[reverseKey] || 'fortress';
+  }
+
+  // 计算内在冲突值
+  const rationalCamp = scores.saver + scores.security;
+  const emotionalCamp = scores.spender + scores.risktaker + scores.flyer;
+  const crossCamp = (
+    (['saver','security'].includes(primary[0]) && ['spender','risktaker','flyer'].includes(secondary[0])) ||
+    (['spender','risktaker','flyer'].includes(primary[0]) && ['saver','security'].includes(secondary[0]))
+  );
+  
+  const scoreDiff = primary[1] - secondary[1];
+  const proximityScore = scoreDiff <= 2 ? 3 : (scoreDiff <= 5 ? 1 : 0);
+  const conflictValue = (crossCamp ? 5 : 0) + proximityScore + conflictExtra;
+  
+  let conflictLevel;
+  if (conflictValue <= 3) conflictLevel = 'low';
+  else if (conflictValue <= 7) conflictLevel = 'medium';
+  else conflictLevel = 'high';
+
+  // 计算百分比
+  const totalScore = Object.values(scores).reduce((a, b) => a + b, 0) || 1;
+  const primaryPct = Math.round(primary[1] / totalScore * 100);
+  const secondaryPct = Math.round(secondary[1] / totalScore * 100);
+
+  return {
+    personalityKey,
+    primaryType: primary[0],
+    secondaryType: secondary[0],
+    primaryScore: primary[1],
+    secondaryScore: secondary[1],
+    primaryPct,
+    secondaryPct,
+    scores,
+    conflictValue,
+    conflictLevel,
+    scoreDiff
+  };
+}
+
+// ============ 名称映射 ============
+const TYPE_NAMES = {
+  saver: '省钱王', spender: '消费狂', risktaker: '冒险家', security: '求稳者', flyer: '随性者'
+};
+
+// ============ 渲染结果 ============
+function showResult() {
+  const result = calculateResult();
+  currentVersion = 'gentle';
+  renderResult(result);
+  showPage('resultPage');
+}
+
+function switchVersion(version) {
+  currentVersion = version;
+  const result = calculateResult();
+  renderResult(result);
+  window.scrollTo(0,0);
+}
+
+function renderResult(result) {
+  const page = document.getElementById('resultPage');
+  const p = PERSONALITIES_GENTLE[result.personalityKey];
+  const pf = PERSONALITIES_FUN[result.personalityKey];
+  const conflict = CONFLICT_INTERPRETATIONS[result.conflictLevel];
+  const isGentle = currentVersion === 'gentle';
+  
+  if (!p || !pf) {
+    page.innerHTML = '<div style="text-align:center;padding:100px 40px;"><h2>结果计算中出现了问题</h2><button class="btn-restart" onclick="restart()">重新测试</button></div>';
+    return;
+  }
+
+  const conflictPct = Math.min(Math.round(result.conflictValue / 12 * 100), 100);
+
+  if (isGentle) {
+    page.innerHTML = renderGentleVersion(p, result, conflict, conflictPct);
+  } else {
+    page.innerHTML = renderFunVersion(pf, p, result, conflict, conflictPct);
+  }
+}
+
+function renderGentleVersion(p, result, conflict, conflictPct) {
+  return `
+    <div class="version-toggle">
+      <div class="version-toggle-inner">
+        <button class="toggle-btn active" onclick="switchVersion('gentle')">温柔版</button>
+        <button class="toggle-btn" onclick="switchVersion('fun')">搞笑版</button>
+      </div>
+    </div>
+    
+    <div class="result-hero">
+      <div class="result-label">— Your Money Personality —</div>
+      <h1 class="result-name">${p.name}</h1>
+      <div class="result-name-en">${p.nameEn}</div>
+      <div class="result-tagline">${p.tagline}</div>
+      <div style="margin-top:30px;font-size:13px;color:var(--text-tertiary);letter-spacing:2px;">
+        主人格 · <strong style="color:var(--accent)">${TYPE_NAMES[result.primaryType]}</strong> ${result.primaryPct}%
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        次人格 · <strong style="color:var(--accent)">${TYPE_NAMES[result.secondaryType]}</strong> ${result.secondaryPct}%
+      </div>
+    </div>
+    
+    <div class="result-section">
+      <div class="section-title">你是谁</div>
+      <div class="section-content">${formatText(p.identity)}</div>
+    </div>
+    
+    <div class="result-section">
+      <div class="section-title">这或许源于</div>
+      <div class="section-content">${formatText(p.origin)}</div>
+    </div>
+    
+    <div class="result-section">
+      <div class="section-title">你的光芒</div>
+      ${p.lights.map(l => `
+        <div class="list-item">
+          <span class="list-marker">✦</span>
+          <div class="list-content"><strong>${l.title}</strong>${l.content}</div>
+        </div>
+      `).join('')}
+    </div>
+    
+    <div class="result-section">
+      <div class="section-title">需要留意的阴影</div>
+      ${p.shadows.map(s => `
+        <div class="list-item">
+          <span class="list-marker">◇</span>
+          <div class="list-content"><strong>${s.title}</strong>${s.content}</div>
+        </div>
+      `).join('')}
+    </div>
+    
+    <div class="result-section">
+      <div class="section-title">给你的一些话</div>
+      ${p.advice.map(a => `
+        <div class="list-item">
+          <span class="list-marker">·</span>
+          <div class="list-content"><strong>${a.title}</strong>${a.content}</div>
+        </div>
+      `).join('')}
+    </div>
+    
+    ${renderConflictSection(conflict, conflictPct, result)}
+    
+    ${renderQuadrantChart(result.personalityKey)}
+    
+    <div class="result-section">
+      <div class="section-title">同一种灵魂</div>
+      ${p.celebrities.map(c => `
+        <div class="celebrity-card">
+          <div class="celebrity-name">${c.name}</div>
+          <div class="celebrity-title">${c.title}</div>
+          <p>${c.story}</p>
+          <div class="celebrity-quote">"${c.quote}"</div>
+        </div>
+      `).join('')}
+    </div>
+    
+    <div class="result-section">
+      <div class="section-title">为你挑的两本书</div>
+      ${p.books.map(b => `
+        <div class="book-card">
+          <div class="book-title">${b.title}</div>
+          <div class="book-author">${b.author}</div>
+          <div class="book-reason">${b.reason}</div>
+        </div>
+      `).join('')}
+    </div>
+    
+    <div class="final-section">
+      <div class="final-content">${formatText(p.closing)}</div>
+      ${renderCommunitySection()}
+      <button class="btn-restart" onclick="restart()">重 新 测 试</button>
+    </div>
+  `;
+}
+
+function renderFunVersion(pf, p, result, conflict, conflictPct) {
+  return `
+    <div class="version-toggle">
+      <div class="version-toggle-inner">
+        <button class="toggle-btn" onclick="switchVersion('gentle')">温柔版</button>
+        <button class="toggle-btn active" onclick="switchVersion('fun')">搞笑版</button>
+      </div>
+    </div>
+    
+    <div class="fun-version">
+      <div class="result-hero">
+        <div class="result-label">— Your Money Personality —</div>
+        <h1 class="result-name">${pf.name}</h1>
+        <div class="result-name-en" style="font-size:18px;">${p.nameEn} · ${p.combo}</div>
+        <div class="result-tagline">${pf.tagline}</div>
+      </div>
+      
+      <div class="fun-section">
+        <div class="fun-block">
+          <div class="fun-block-title">你是谁</div>
+          <div class="fun-content">${formatText(pf.identity)}</div>
+        </div>
+        
+        <div class="fun-block">
+          <div class="fun-block-title">身边人怎么看你</div>
+          ${pf.dialogs.map(d => `
+            <div class="fun-dialog">
+              <span class="fun-dialog-who">${d.who}：</span>
+              <span class="fun-dialog-what">${d.what}</span>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="fun-block">
+          <div class="fun-block-title">日常名场面</div>
+          <ul class="fun-list">
+            ${pf.scenes.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      
+      ${renderConflictSection(conflict, conflictPct, result)}
+      
+      ${renderQuadrantChart(result.personalityKey)}
+      
+      <div class="final-section">
+        ${renderCommunitySection()}
+        <button class="btn-restart" onclick="restart()">重 新 测 试</button>
+      </div>
+    </div>
+  `;
+}
+
+// ============ 象限图 ============
+const PERSONALITY_POSITIONS = {
+  fortress:  { x: 25, y: 20, label: "磐石型" },
+  planner:   { x: 70, y: 20, label: "体验规划师" },
+  hunter:    { x: 30, y: 40, label: "战略猎手" },
+  curator:   { x: 65, y: 35, label: "精致主义者" },
+  cycler:    { x: 45, y: 45, label: "克制享乐家" },
+  hermit:    { x: 20, y: 55, label: "隐士型" },
+  dandelion: { x: 75, y: 60, label: "蒲公英型" },
+  underdog:  { x: 25, y: 75, label: "暗黑赌徒" },
+  nomad:     { x: 70, y: 80, label: "游牧者型" },
+  blaze:     { x: 80, y: 75, label: "燃烧者型" }
+};
+
+function renderQuadrantChart(currentKey) {
+  const pos = PERSONALITY_POSITIONS;
+  let dots = '';
+  let labels = '';
+  
+  for (const [key, p] of Object.entries(pos)) {
+    const isCurrent = key === currentKey;
+    const cx = p.x * 3.6 + 40;
+    const cy = p.y * 3.2 + 50;
+    const r = isCurrent ? 10 : 5;
+    const fill = isCurrent ? '#5c4a30' : '#c4a882';
+    const opacity = isCurrent ? 1 : 0.5;
+    const fontSize = isCurrent ? 13 : 11;
+    const fontWeight = isCurrent ? 600 : 300;
+    const textFill = isCurrent ? '#2c2416' : '#9a8b6f';
+    
+    dots += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" opacity="${opacity}"/>`;
+    
+    // 调整标签位置避免重叠
+    let tx = cx;
+    let ty = cy - r - 8;
+    if (p.y < 30) ty = cy + r + 16;
+    
+    labels += `<text x="${tx}" y="${ty}" text-anchor="middle" fill="${textFill}" font-size="${fontSize}" font-weight="${fontWeight}" font-family="'Noto Serif SC',serif">${p.label}</text>`;
+    
+    if (isCurrent) {
+      dots += `<circle cx="${cx}" cy="${cy}" r="${r + 6}" fill="none" stroke="#8b6f47" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>`;
+    }
+  }
+  
+  return `
+    <div class="result-section">
+      <div class="section-title">人格象限图</div>
+      <div style="text-align:center;margin:20px 0;">
+        <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;width:100%;">
+          <!-- 背景 -->
+          <rect x="40" y="30" width="360" height="320" fill="#f5efe4" rx="4"/>
+          
+          <!-- 坐标轴 -->
+          <line x1="220" y1="30" x2="220" y2="350" stroke="#d4c5a8" stroke-width="1"/>
+          <line x1="40" y1="190" x2="400" y2="190" stroke="#d4c5a8" stroke-width="1"/>
+          
+          <!-- 轴标签 -->
+          <text x="220" y="22" text-anchor="middle" fill="#9a8b6f" font-size="12" font-family="'Noto Serif SC',serif" font-style="italic">求稳</text>
+          <text x="220" y="370" text-anchor="middle" fill="#9a8b6f" font-size="12" font-family="'Noto Serif SC',serif" font-style="italic">冒险</text>
+          <text x="30" y="194" text-anchor="end" fill="#9a8b6f" font-size="12" font-family="'Noto Serif SC',serif" font-style="italic">省</text>
+          <text x="410" y="194" text-anchor="start" fill="#9a8b6f" font-size="12" font-family="'Noto Serif SC',serif" font-style="italic">花</text>
+          
+          <!-- 象限标注 -->
+          <text x="130" y="110" text-anchor="middle" fill="#d4c5a8" font-size="11" font-family="'Cormorant Garamond',serif" font-style="italic">省钱 × 求稳</text>
+          <text x="310" y="110" text-anchor="middle" fill="#d4c5a8" font-size="11" font-family="'Cormorant Garamond',serif" font-style="italic">消费 × 求稳</text>
+          <text x="130" y="280" text-anchor="middle" fill="#d4c5a8" font-size="11" font-family="'Cormorant Garamond',serif" font-style="italic">省钱 × 冒险</text>
+          <text x="310" y="280" text-anchor="middle" fill="#d4c5a8" font-size="11" font-family="'Cormorant Garamond',serif" font-style="italic">消费 × 冒险</text>
+          
+          <!-- 人格点 -->
+          ${dots}
+          ${labels}
+        </svg>
+      </div>
+      <p style="text-align:center;color:var(--text-tertiary);font-size:13px;font-style:italic;margin-top:10px;">
+        ● 你的位置 &nbsp;&nbsp; · 其他人格
+      </p>
+    </div>
+  `;
+}
+
+function renderConflictSection(conflict, conflictPct, result) {
+  return `
+    <div class="conflict-section">
+      <div class="section-title" style="margin-bottom:16px;">内在冲突值</div>
+      <div class="conflict-meter">
+        <div class="conflict-bar">
+          <div class="conflict-fill" style="width:${conflictPct}%"></div>
+        </div>
+        <div class="conflict-value">${conflictPct}%</div>
+      </div>
+      <div class="conflict-level">${conflict.level}</div>
+      <div class="conflict-text">${formatText(conflict.text)}</div>
+    </div>
+  `;
+}
+
+function renderCommunitySection() {
+  return `
+    <div class="community-box">
+      <h3>如果你想继续探索</h3>
+      <div class="subtitle">— Continue Your Journey —</div>
+      <p style="text-align:center;color:var(--text-secondary);margin-bottom:20px;font-size:14.5px;">
+        📖 推荐阅读《谈钱不伤感情》（本测试理论来源）
+      </p>
+      <p style="text-align:center;color:var(--accent-dark);margin-bottom:16px;font-size:14.5px;font-weight:500;">
+        💬 加入社群共创
+      </p>
+      <ul class="community-list">
+        <li><div><strong>在认知半径社群内分享你的人格类型</strong>看看谁和你是同类，谁和你形成"相反的动态"——省钱王帮消费狂做预算，冒险家帮求稳者看投资机会，互补才有趣</div></li>
+        <li><div><strong>晒晒本月最满意/最后悔的一笔消费</strong>学会复盘，看看钱都去了哪里</div></li>
+        <li><div><strong>分享你的金钱小目标</strong>存钱计划 / 减债计划 / 学习计划</div></li>
+      </ul>
+    </div>
+  `;
+}
+
+function formatText(text) {
+  if (!text) return '';
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .split('\n\n')
+    .map(p => p.trim())
+    .filter(p => p)
+    .map(p => '<p>' + p.replace(/\n/g, '<br>') + '</p>')
+    .join('');
+}
+
+function restart() {
+  currentQuestion = 0;
+  answers = [];
+  currentVersion = 'gentle';
+  document.getElementById('resultPage').innerHTML = '';
+  showPage('coverPage');
+}</script>
+</body>
+</html>
